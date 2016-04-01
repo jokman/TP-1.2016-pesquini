@@ -9,15 +9,15 @@ class Parser::ParserPaymentController < Parser::ParserController
                                        :build_enterprise, :build_sanction, 
                                        :check_and_save]
 
-  def index
+  def index()
 
   end
 
-  def check_value(text)
-    #this method recieves a string representing a payment value in the format 19,470.99
-    #Then it takes off the comma (",") and parse it to float format as 19470.99
+  # This method recieves a string representing a payment value in the format 19,470.99.
+  # Then it takes off the comma (",") and parse it to float format as 19470.99.
+  def check_value( text )
      begin
-      return text.gsub(",","").to_f
+      return text.gsub( ",","" ).to_f()
     rescue
       return nil
     end
@@ -25,35 +25,35 @@ class Parser::ParserPaymentController < Parser::ParserController
 
   def import()
     constante = 0
-    Enterprise.find_each do |e|
+    Enterprise.find_each() do |e|
 
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
       begin
-        data =  open(url+e.cnpj).read
-        csv = CSV.parse(data, :headers => true, :encoding => 'ISO-8859-1')
+        data =  open( url + e.cnpj ).read()
+        csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
 
-        csv.each_with_index do |row, i|
-          p = Payment.new
-          p.identifier = check_nil_ascii(row[0])
-          p.process_number = check_nil_ascii(row[10])
-          p.initial_value = check_value(row[16])
-          p.sign_date = check_date(row[12])
-          p.start_date = check_date(row[14])
-          p.end_date = check_date(row[15])
+        csv.each_with_index() do |row, i|
+          p = Payment.new()
+          p.identifier = check_nil_ascii( row[0] )
+          p.process_number = check_nil_ascii( row[10] )
+          p.initial_value = check_value( row[16] )
+          p.sign_date = check_date( row[12] )
+          p.start_date = check_date( row[14] )
+          p.end_date = check_date( row[15] )
           p.enterprise = e
           e.payments_sum = e.payments_sum + p.initial_value
-          check_and_save(e)
-          check_and_save(p)
+          check_and_save( e )
+          check_and_save( p )
         end
       rescue
-        constante = constante +   1
+        constante = constante + 1
       end
     end
-    puts "="*50
+    puts "=" * 50
     puts "Quantidade de empresas sem pagamentos: ", constante
   end
 
-  def check_and_save(c)
+  def check_and_save( c )
     begin
       c.save!
       c
