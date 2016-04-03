@@ -1,10 +1,11 @@
 # Pesquini - TP 1-2016
 
-Projeto utilizado na disciplina de Técnicas de Programação, ministrado na Faculdade UnB Gama, FGA-UnB, com objetivo de evoluir o código deste projeto.
+Project used in the discipline programming pratices, taught in Faculdade UnB Gama, FGA-UnB, with objective to evolve the code of this project
 
-### Integrantes
 
-|Nome                    |Matrícula |
+### Members
+
+|Name                    |Registry |
 |------------------------|----------|
 |Ana Carolina Lopes da Silva|09/0078659|
 |Cristiano Costa de Sousa|10/44320|
@@ -12,7 +13,9 @@ Projeto utilizado na disciplina de Técnicas de Programação, ministrado na Fac
 |Ygor Torres|13/0138302|
 
 
-### Link entregas:
+### Link issues:
 
-* [1ª entrega - Stylesheet (Folha de estilo)](https://github.com/TP12016/pesquini/wiki)
-* [2ª entrega - Lista de Variáveis - Classes - Métodos](https://github.com/TP12016/pesquini/wiki/Lista-de-Vari%C3%A1veis)
+* [1ª issue - Style Sheet ](https://github.com/TP12016/pesquini/wiki)
+* [2ª issue - Class, methods and variables list](https://github.com/TP12016/pesquini/wiki/Class%2C-Methods-and-Variable-List)
+
+***
