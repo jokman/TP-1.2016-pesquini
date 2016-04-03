@@ -13,22 +13,27 @@ class Parser::ParserCeiController < Parser::ParserController
   end
 
   def check_nil_ascii( text )
+
     if text.include?( "\u0000" )
       return "Não Informado"
     else
       return text.upcase()
     end
+
   end
 
   def check_date( text )
+
     begin
       return text.to_date()
     rescue
       return nil
     end
+
   end
 
   def import()
+
     xd = 0
     CSV.foreach( @@filename, :headers => true, :col_sep => "\t",
                 :encoding => 'ISO-8859-1' ) do |row|
@@ -39,30 +44,39 @@ class Parser::ParserCeiController < Parser::ParserController
         enterprise = build_enterprise( data )
         build_sanction( data, sanction_type, state, enterprise )
       end
+
     end
+
   end
 
   def build_state( row_data )
+
     s = State.new()
     s.abbreviation = check_nil_ascii( row_data["UF Órgão Sancionador"] )
     check_and_save( s )
+
   end
 
   def build_sanction_type( row_data )
+
     s = SanctionType.new()
     s.description = check_nil_ascii( row_data["Tipo Sanção"] )
     check_and_save( s )
+
   end
 
   def build_enterprise( row_data )
+
     e = Enterprise.new()
     e.cnpj = row_data["CPF ou CNPJ do Sancionado"]
     # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
     e.corporate_name = check_nil_ascii( row_data["Razão Social - Cadastro Receita"] )
     check_and_save( e )
+
   end
 
   def build_sanction( row_data, sanction_type, state, enterprise )
+
     s = Sanction.new()
     s.initial_date = check_date( row_data["Data Início Sanção"] )
     s.final_date = check_date( row_data["Data Final Sanção"] )
@@ -72,9 +86,11 @@ class Parser::ParserCeiController < Parser::ParserController
     s.sanction_organ = check_nil_ascii( row_data["Órgão Sancionador"] )
     s.state_id = state.id
     check_and_save( s )
+
   end
 
   def check_and_save( c )
+
     begin
       c.save!
       c
@@ -82,5 +98,7 @@ class Parser::ParserCeiController < Parser::ParserController
       c = c.refresh!
       c
     end
+
   end
+
 end

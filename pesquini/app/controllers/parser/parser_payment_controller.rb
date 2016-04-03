@@ -16,14 +16,17 @@ class Parser::ParserPaymentController < Parser::ParserController
   # This method recieves a string representing a payment value in the format 19,470.99.
   # Then it takes off the comma (",") and parse it to float format as 19470.99.
   def check_value( text )
+
      begin
       return text.gsub( ",","" ).to_f()
     rescue
       return nil
     end
+
   end
 
   def import()
+
     constante = 0
     Enterprise.find_each() do |e|
 
@@ -51,9 +54,11 @@ class Parser::ParserPaymentController < Parser::ParserController
     end
     puts "=" * 50
     puts "Quantidade de empresas sem pagamentos: ", constante
+
   end
 
   def check_and_save( c )
+
     begin
       c.save!
       c
@@ -61,5 +66,7 @@ class Parser::ParserPaymentController < Parser::ParserController
       c = c.refresh!
       c
     end
+
   end
+  
 end
