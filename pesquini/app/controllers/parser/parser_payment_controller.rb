@@ -1,3 +1,11 @@
+=begin
+File: parser_payment_controller.rb
+Purpose: Class that manipulate the data to the application.
+License: GPL v3.
+Pesquini Group 6
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+=end
+
 class Parser::ParserPaymentController < Parser::ParserController
 
   require 'csv'
@@ -13,12 +21,14 @@ class Parser::ParserPaymentController < Parser::ParserController
 
   end
 
-  # This method recieves a string representing a payment value in the format 19,470.99.
-  # Then it takes off the comma (",") and parse it to float format as 19470.99.
+=begin
+  This method recieves a string representing a payment value in the format 19,470.99.
+  Then it takes off the comma (",") and parse it to float format as 19470.99.
+=end  
   def check_value( text )
 
      begin
-      return text.gsub( ",","" ).to_f()
+      return text.gsub( ",", " " ).to_f()
     rescue
       return nil
     end
@@ -28,13 +38,12 @@ class Parser::ParserPaymentController < Parser::ParserController
   def import()
 
     constante = 0
-    Enterprise.find_each() do |e|
 
+    Enterprise.find_each() do |e|
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
       begin
         data =  open( url + e.cnpj ).read()
         csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
-
         csv.each_with_index() do |row, i|
           p = Payment.new()
           p.identifier = check_nil_ascii( row[0] )
@@ -52,6 +61,7 @@ class Parser::ParserPaymentController < Parser::ParserController
         constante = constante + 1
       end
     end
+
     puts "=" * 50
     puts "Quantidade de empresas sem pagamentos: ", constante
 
