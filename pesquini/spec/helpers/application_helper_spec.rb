@@ -1,5 +1,5 @@
 # File: application_helper_spec.rb
-# Purpose: Contains unit test of flash_class
+# Purpose: Contains unit test of class ApplicationHelper
 # License: GPL v3.
 # Pesquini Group 6
 # FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
