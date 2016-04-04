@@ -1,4 +1,4 @@
-# File: welcome_controller.rb
+# File: user_controller.rb
 # Purpose: Contains new user method
 # License: GPL v3.
 # Pesquini Group 6
