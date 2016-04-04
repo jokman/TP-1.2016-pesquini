@@ -1,3 +1,9 @@
+# File: application_controller.rb
+# Purpose: Contains errors methods
+# License: GPL v3.
+# Pesquini Group 6
+# FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+
 class ApplicationController < ActionController::Base
 
   include SessionsHelper
