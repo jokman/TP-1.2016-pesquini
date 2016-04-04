@@ -1,3 +1,9 @@
+# File: sessions_helper.rb
+# Purpose: Contains login verification method
+# License: GPL v3.
+# Pesquini Group 6
+# FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+
 module SessionsHelper
 
   def sign_in user
