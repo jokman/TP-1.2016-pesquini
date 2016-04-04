@@ -1,3 +1,9 @@
+# File: application_helper_spec.rb
+# Purpose: Contains unit test of flash_class
+# License: GPL v3.
+# Pesquini Group 6
+# FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+
 require 'rails_helper'
   
 include ApplicationHelper
