@@ -1,4 +1,4 @@
-# File: welcome_controller.rb
+# File: statistics_controller.rb
 # Purpose: Contains results of all search method
 # License: GPL v3.
 # Pesquini Group 6
