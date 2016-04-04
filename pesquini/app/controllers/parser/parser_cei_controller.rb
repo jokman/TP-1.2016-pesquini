@@ -6,7 +6,6 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
-
 class Parser::ParserCeiController < Parser::ParserController
 
   require 'csv'

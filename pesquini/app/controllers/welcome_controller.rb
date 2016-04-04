@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
 	
   def index()
 
-    unless params[:q].nil?
+    unless params[:q].nil?()
       params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
     end 
 
@@ -16,4 +16,5 @@ class WelcomeController < ApplicationController
     @enterprises = @search.result()
 
   end
+
 end

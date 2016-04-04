@@ -41,7 +41,6 @@ class EnterprisesController < ApplicationController
     p.each_with_index do |a, index|
       if a.payments_sum == enterprise.payments_sum
         return index + 1 
-      end
       else
         
       end
