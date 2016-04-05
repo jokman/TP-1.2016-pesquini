@@ -1,9 +1,10 @@
-# File: welcome_controller.rb
-# Purpose: Contains search method
-# License: GPL v3.
-# Pesquini Group 6
-# FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
-
+=begin
+File: welcome_controller.rb
+Purpose: Contains search method
+License: GPL v3.
+Pesquini Group 6
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+=end
 class WelcomeController < ApplicationController
 	
   def index()
