@@ -1,13 +1,24 @@
+=begin
+File: user_controller.rb
+Purpose: Contains validates description of sanction.
+License: GPL v3.
+Pesquini Group 6
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+=end
 class SanctionType < ActiveRecord::Base
+
   has_many :sanctions
   validates_uniqueness_of :description
 
   def refresh!
+
     s = SanctionType.find_by_description(self.description)
+
   end
 
 
   def self.all_sanction_types
+
     stantion_types = [
  [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"],
  [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],
@@ -26,6 +37,7 @@ class SanctionType < ActiveRecord::Base
  [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
  ]
  stantion_types
+
   end
 
 end
