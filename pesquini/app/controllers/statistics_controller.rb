@@ -57,20 +57,18 @@ class StatisticsController < ApplicationController
     gon.states = @@states_list
     gon.dados = total_by_state
     titulo = "Gráfico de Sanções por Estado"
-    @chart = LazyHighCharts::HighChart.new( 'graph' ) do |f|
+    @chart = LazyHighCharts::HighChart.new( "graph" ) do |f|
       f.title( :text => titulo )
       if( params[:year_].to_i() != 0 )
-        f.title(:text => params[:year_].to_i )
+        f.title(:text => params[:year_].to_i() )
       else
 
       end
       f.xAxis( :categories => @@states_list )
       f.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
-      f.yAxis [
-      {:title => {:text => "Sanções", :margin => 30} },
-      ]
-      f.legend( :align => 'right', :verticalAlign => 'top', :y => 75, 
-                :x => -50, :layout => 'vertical', )
+      f.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
+      f.legend( :align => "right", :verticalAlign => "top", :y => 75, 
+                :x => -50, :layout => "vertical", )
       f.chart( {:defaultSeriesType => "column"} )
     end
 
@@ -83,8 +81,8 @@ class StatisticsController < ApplicationController
       f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
       f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
       f.options[:title][:text] = titulo
-      f.legend( :layout => "vertical", :style => {:left => 'auto', :bottom => 'auto', 
-                :right => '50px', :top => '100px'} )
+      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto', 
+                :right => "50px", :top => "100px"} )
       f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
                       :dataLabels => {:enabled => true, :color => "black",
                       :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
@@ -93,7 +91,7 @@ class StatisticsController < ApplicationController
 
     if ( !@states )
       @states = @@states_list.clone
-      @states.unshift("Todos")
+      @states.unshift( "Todos" )
     else
 
     end
