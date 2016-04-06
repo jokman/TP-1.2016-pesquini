@@ -1,3 +1,11 @@
+=begin
+File: parser_cei_controller.rb
+Purpose: Class that treats the parser data from file CEIS.
+License: GPL v3.
+Pesquini Group 6
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+=end
+
 class Parser::ParserCeiController < Parser::ParserController
 
   require 'csv'
@@ -36,7 +44,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
     xd = 0
     CSV.foreach( @@filename, :headers => true, :col_sep => "\t",
-                :encoding => 'ISO-8859-1' ) do |row|
+                 :encoding => 'ISO-8859-1' ) do |row|
       data = row.to_hash
       unless data["Tipo de Pessoa"].match( "J|j" ).nil?()
         sanction_type = build_sanction_type( data )
@@ -44,7 +52,6 @@ class Parser::ParserCeiController < Parser::ParserController
         enterprise = build_enterprise( data )
         build_sanction( data, sanction_type, state, enterprise )
       end
-
     end
 
   end

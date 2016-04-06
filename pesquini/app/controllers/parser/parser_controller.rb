@@ -1,3 +1,11 @@
+=begin
+File: parser_controller.rb
+Purpose: Class that manipulate the data to the application.
+License: GPL v3.
+Pesquini Group 6
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+=end
+
 class Parser::ParserController < ApplicationController
 
   require 'csv'
