@@ -13,6 +13,7 @@ class SanctionType < ActiveRecord::Base
 
   def refresh!()
 
+    Preconditions.check_not_nil( description )
     s = SanctionType.find_by_description( self.description )
 
   end
@@ -20,6 +21,7 @@ class SanctionType < ActiveRecord::Base
 
   def self.all_sanction_types()
 
+    Preconditions.check_not_nil( stantion_types )
     stantion_types = [
       [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"],
       [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],

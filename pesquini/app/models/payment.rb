@@ -14,6 +14,7 @@ class Payment < ActiveRecord::Base
 
   def refresh!()
 
+  	Preconditions.check_not_nil( process_number )
     p = Payment.find_by_process_number( self.process_number )
 
   end

@@ -35,9 +35,9 @@ class Sanction < ActiveRecord::Base
 
    def self.percentual_sanction( value )
 
-    Preconditions.check(total) { is_not_nil and satisfies(">= 0") { total >= 0 } }
-    Preconditions.check_not_nil( value )
-    total = Sanction.all.count()
+    Preconditions.check(total) { is_not_nil and has_type( Interger ) and satisfies("> 0") { total > 0 } }
+    Preconditions.check( value ) { is_not_nil and has_type( Float ) }
+    total = Sanction.all.count
     value * 100.0 / total
 
   end
