@@ -18,6 +18,7 @@ class Sanction < ActiveRecord::Base
 
   def self.all_years()
 
+    Preconditions.check_not_nil( years )
     years = ["Todos", 1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
              2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
              2014, 2015]
@@ -27,12 +28,15 @@ class Sanction < ActiveRecord::Base
 
   def refresh!()
 
+    Preconditions.check_not_nil( s )
     s = Sanction.find_by_process_number( self.process_number() )
 
   end
 
    def self.percentual_sanction( value )
 
+    Preconditions.check(total) { is_not_nil and satisfies(">= 0") { total >= 0 } }
+    Preconditions.check_not_nil( value )
     total = Sanction.all.count()
     value * 100.0 / total
 
