@@ -28,8 +28,8 @@ class Sanction < ActiveRecord::Base
 
   def refresh!()
 
-    Preconditions.check_not_nil( s )
-    s = Sanction.find_by_process_number( self.process_number() )
+    Preconditions.check_not_nil( process_number )
+    s = Sanction.find_by_process_number( self.process_number )
 
   end
 
