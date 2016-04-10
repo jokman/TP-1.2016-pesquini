@@ -41,14 +41,15 @@ module SessionsHelper
     def authorize()
     
       unless signed_in?    
-        redirect_to '/signin', alert: "Nao autorizado !" 
+        redirect_to "/signin'" alert: "Nao autorizado !" 
       end
     
     end
 
     def sign_out()
     
-      current_user.update_attribute( :remember_token, User.digest( User.new_remember_token ) )
+      current_user.update_attribute( :remember_token, 
+                                     User.digest( User.new_remember_token ) )
       cookies.delete( :remember_token )
       self.current_user = nil
     
