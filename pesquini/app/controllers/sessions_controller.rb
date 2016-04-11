@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
 
   def create()
 
+    Preconditions.check_not_nil( login )
+    Preconditions.check_not_nil( password )
     login = params[:session][:login].downcase
     password = params[:session][:password]
     user = User.find_by( login: login )
@@ -29,9 +31,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy()
+
+    assert user.empty?, "User must not be empty!"
     if signed_in?()
       sign_out 
       redirect_to root_path
     end
+
   end
 end

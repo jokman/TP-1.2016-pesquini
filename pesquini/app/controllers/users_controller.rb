@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def new()
 
+  	Preconditions.check_not_nil( @user )
     @user = User.new()
 
   end

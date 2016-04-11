@@ -18,6 +18,7 @@ class StatisticsController < ApplicationController
 
   def most_sanctioned_ranking()
 
+    assert enterprise_group_array.empty?, "Array must not be empty!"
     enterprise_group_array = Enterprise.most_sanctioned_ranking()
     @enterprise_group = enterprise_group_array[0]
     @enterprise_group_count = enterprise_group_array[1]
@@ -28,6 +29,8 @@ class StatisticsController < ApplicationController
 
     @all = false
     if params[:sanjana]
+      Preconditions.check_not_nil( :sanjana )
+      assert :per_page <= 20
       @all = true
       @enterprises = Enterprise.featured_payments.paginate( :page => params[:page], :per_page => 20 )
     else

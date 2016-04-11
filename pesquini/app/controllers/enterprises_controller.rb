@@ -11,7 +11,7 @@ class EnterprisesController < ApplicationController
   def index()
 
     if params[:q].nil?()
-      assert :per_page == 10
+      assert :per_page <= 10
       @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
       @enterprises = Enterprise.paginate( :page => params[:page], :per_page => 10 )
     else
