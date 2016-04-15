@@ -5,10 +5,12 @@ License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
+
 class UsersController < ApplicationController
 
   def new()
 
+  	Preconditions.check_not_nil( @user )
     @user = User.new()
 
   end

@@ -22,6 +22,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
   def check_nil_ascii( text )
 
+    Preconditions.check_argument( text ) { is_not_nil }
     if text.include?( "\u0000" )
       return "Não Informado"
     else
@@ -32,6 +33,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
   def check_date( text )
 
+    Preconditions.check_argument( text ) { is_not_nil }
     begin
       return text.to_date()
     rescue
@@ -58,6 +60,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
   def build_state( row_data )
 
+    Preconditions.check_argument( row_data ) { is_not_nil }
     s = State.new()
     s.abbreviation = check_nil_ascii( row_data["UF Órgão Sancionador"] )
     check_and_save( s )
@@ -66,6 +69,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
   def build_sanction_type( row_data )
 
+    Preconditions.check_argument( row_data ) { is_not_nil }
     s = SanctionType.new()
     s.description = check_nil_ascii( row_data["Tipo Sanção"] )
     check_and_save( s )
@@ -74,6 +78,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
   def build_enterprise( row_data )
 
+    Preconditions.check_argument( row_data ) { is_not_nil }
     e = Enterprise.new()
     e.cnpj = row_data["CPF ou CNPJ do Sancionado"]
     # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
@@ -83,7 +88,8 @@ class Parser::ParserCeiController < Parser::ParserController
   end
 
   def build_sanction( row_data, sanction_type, state, enterprise )
-
+    
+    Preconditions.check_argument( row_data, sanction_type, state, enterprise ) { is_not_nil }
     s = Sanction.new()
     s.initial_date = check_date( row_data["Data Início Sanção"] )
     s.final_date = check_date( row_data["Data Final Sanção"] )

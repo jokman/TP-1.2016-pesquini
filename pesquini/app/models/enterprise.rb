@@ -12,10 +12,10 @@ class Enterprise < ActiveRecord::Base
   has_many :payments
   validates_uniqueness_of :cnpj
 
-  scope :featured_sanctions, ->( number=nil ){number ? order( "sanctions_count DESC" )
-                                              .limit( number ) :order('sanctions_count DESC')}
-  scope :featured_payments, -> ( number=nil ){number ? order( "payments_sum DESC" )
-                                              .limit( number ) :order( "payments_sum DESC" )}
+  scope :featured_sanctions, -> ( number = nil ){number ? order( "sanctions_count DESC" )
+                                              .limit( number ) :order('sanctions_count DESC') }
+  scope :featured_payments, -> ( number = nil ){number ? order( "payments_sum DESC" )
+                                              .limit( number ) :order( "payments_sum DESC" ) }
 
    def last_sanction()
     
@@ -23,6 +23,7 @@ class Enterprise < ActiveRecord::Base
     
     unless sanction.nil?()    
       self.sanctions.each do |s|
+        Preconditions.check_not_nil( s )
         if s.initial_date > sanction.initial_date
           sanction = s 
         else
@@ -41,6 +42,7 @@ class Enterprise < ActiveRecord::Base
   
     unless payment.nil?()
       self.payments.each do |f|
+         Preconditions.check_not_nil( f )
         if f.sign_date > payment.sign_date
           payment = f 
         else
@@ -68,22 +70,26 @@ class Enterprise < ActiveRecord::Base
 
   def refresh!()
   
+    Preconditions.check_not_nil( cnpj )
     e = Enterprise.find_by_cnpj( self.cnpj )
   
   end
 
   def self.enterprise_position( enterprise )
-  
-      orderedSanc = self.featured_sanctions
-      groupedSanc = orderedSanc.uniq.group_by( &:sanctions_count ).to_a
 
-      groupedSanc.each_with_index do |k,index|
-        if k[0] == enterprise.sanctions_count
-          return index + 1
-        else
+    Preconditions.check_not_nil( enterprise )
 
-        end
+    orderedSanc = self.featured_sanctions
+    groupedSanc = orderedSanc.uniq.group_by( &:sanctions_count ).to_a
+
+    groupedSanc.each_with_index do |k, index|
+      Preconditions.check_not_nil( k )
+      if k[0] == enterprise.sanctions_count
+        return index + 1
+      else
+
       end
+    end
 
   end
 
@@ -92,10 +98,13 @@ class Enterprise < ActiveRecord::Base
     enterprise_group = []
     enterprise_group_count = []
     @enterprise_group_array = []
+
+    Preconditions.check_not_nil( x )
     a = Enterprise.all.sort_by{ |x| x.sanctions_count }
     b = a.uniq.group_by( &:sanctions_count ).to_a.reverse
 
     b.each do |k|
+      Preconditions.check_not_nil( k )
       enterprise_group << k[0]
       enterprise_group_count << k[1].count
     end

@@ -9,6 +9,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 class User < ActiveRecord::Base
 
   has_secure_password
+
   validates :login, length: { maximum: 50, minimum: 5 }, 
 	                uniqueness: { case_sensitive: false }, allow_blank: false
   validates :password, length: { minimum: 8 }, allow_blank: false
@@ -21,6 +22,7 @@ class User < ActiveRecord::Base
   	
   def User.digest( token )
 
+    Preconditions.check_not_nil( token )
     Digest::SHA1.hexdigest( token.to_s )
   
   end

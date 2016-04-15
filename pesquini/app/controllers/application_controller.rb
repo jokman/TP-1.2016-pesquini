@@ -21,13 +21,15 @@ class ApplicationController < ActionController::Base
 
   def raise_not_found!()
 
-    raise ActionController::RoutingError.new( "No route matches #{params[:unmatched_route]}" )
+    raise ActionController::RoutingError.
+          new( "No route matches #{params[:unmatched_route]}" )
 
   end
 
   def render_not_found()
 
     respond_to do |f|
+      Preconditions.check_not_nil( f )
       f.html{ render :template => "errors/404", :status => 404 }
     end
 

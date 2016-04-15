@@ -40,11 +40,16 @@ class Parser::ParserPaymentController < Parser::ParserController
     constante = 0
 
     Enterprise.find_each() do |e|
+
+      Preconditions.check_not_nil( url )
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
+
       begin
+        Preconditions.check_not_nil( cnpj )
         data =  open( url + e.cnpj ).read()
         csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
         csv.each_with_index() do |row, i|
+          assert row.empty?, "row must not be empty!"
           p = Payment.new()
           p.identifier = check_nil_ascii( row[0] )
           p.process_number = check_nil_ascii( row[10] )
@@ -69,6 +74,7 @@ class Parser::ParserPaymentController < Parser::ParserController
 
   def check_and_save( c )
 
+    Preconditions.check_not_nil( c )
     begin
       c.save!
       c
