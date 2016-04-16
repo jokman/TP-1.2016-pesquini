@@ -61,13 +61,19 @@ class StatisticsController < ApplicationController
     gon.dados = total_by_state
     titulo = "Gráfico de Sanções por Estado"
 
-    @chart = LazyHighCharts::HighChart.new( "graph" ) do |f|
+    @chart = sanction_by_state_graph_information()
+
+  end
+
+  def sanction_by_state_graph_information()
+    
+    LazyHighCharts::HighChart.new( "graph" ) do |f|
       Preconditions.check_not_nil( f )
       f.title( :text => titulo )
       if( params[:year_].to_i() != 0 )
         f.title(:text => params[:year_].to_i() )
       else
-        # Default behavior.
+        # Nothing to do.
       end
       f.xAxis( :categories => @@states_list )
       f.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
@@ -79,22 +85,11 @@ class StatisticsController < ApplicationController
 
   end
 
- def sanction_by_type_graph()
+  def sanction_by_type_graph()
 
     titulo = "Gráfico Sanções por Tipo"
 
-    @chart = LazyHighCharts::HighChart.new( "pie" ) do |f|
-      Preconditions.check_not_nil( f )
-      f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
-      f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
-      f.options[:title][:text] = titulo
-      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto', 
-                :right => "50px", :top => "100px"} )
-      f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
-                      :dataLabels => {:enabled => true, :color => "black",
-                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
-      } )
-    end
+    @chart = sanction_by_type_graph_information()
 
     if ( !@states )
       @states = @@states_list.clone
@@ -106,6 +101,23 @@ class StatisticsController < ApplicationController
       Preconditions.check_not_nil( format )
       format.html # show.html.erb
       format.js
+    end
+
+  end
+
+  def sanction_by_type_graph_information()
+
+    LazyHighCharts::HighChart.new( "pie" ) do |f|
+      Preconditions.check_not_nil( f )
+      f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
+      f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
+      f.options[:title][:text] = titulo
+      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto', 
+                :right => "50px", :top => "100px"} )
+      f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
+                      :dataLabels => {:enabled => true, :color => "black",
+                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
+      } )
     end
 
   end
@@ -126,7 +138,7 @@ class StatisticsController < ApplicationController
           if( s.initial_date.year() ==  params[:year_].to_i() )
             selected_year << s
           else
-            # Default behavior.
+            # Nothing to do.
           end
       end
         results << ( selected_year.count() )
@@ -134,6 +146,7 @@ class StatisticsController < ApplicationController
         results << ( sanctions_by_state.count() )
       end
     end
+
     results
 
   end
@@ -155,7 +168,7 @@ class StatisticsController < ApplicationController
       if( params[:state_] && params[:state_] != "Todos" )
         sanctions_by_type = sanctions_by_type.where( state_id: state[:id] )
       else
-        # Default behavior.
+        # Nothing to do.
       end
       cont = cont + ( sanctions_by_type.count )
       results2 << s[1]

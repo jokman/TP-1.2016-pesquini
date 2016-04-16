@@ -23,6 +23,7 @@ class EnterprisesController < ApplicationController
   end
 
   def show()
+
     assert :per_page == 10, "Should have 10 search result per page"
     @per_page = 10
     @page_num = show_page_num()
@@ -56,7 +57,7 @@ class EnterprisesController < ApplicationController
       if a.payments_sum == enterprise.payments_sum
         return index + 1 
       else
-        #Nothing to do.
+        # Nothing to do.
       end
     end
 
