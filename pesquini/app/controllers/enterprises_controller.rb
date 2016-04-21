@@ -50,6 +50,7 @@ class EnterprisesController < ApplicationController
     payment_position = Enterprise.featured_payments
 
     payment_position.each_with_index do |total_sum, index|
+      
       Preconditions.check_not_nil( total_sum )
       Preconditions.check( index ) { index >= 0 }
       if total_sum.payments_sum == enterprise.payments_sum
