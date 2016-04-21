@@ -12,10 +12,11 @@ module ApplicationHelper
 	
 		Preconditions.check_not_nil( level )
 		case level
-				when :notice  then "alert alert-info"
-				when :success then "alert alert-success"
-				when :error   then "alert alert-error"
-				when :alert   then "alert alert-error"
+		  when :notice  then "alert alert-info"
+		  when :success then "alert alert-success"
+		  when :error   then "alert alert-error"
+		  when :alert   then "alert alert-error"
+		  else "invalid error"
 		end
 	
 	end

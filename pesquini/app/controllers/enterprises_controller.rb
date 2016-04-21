@@ -11,7 +11,6 @@ class EnterprisesController < ApplicationController
   def index()
 
     if params[:q].nil?()
-      assert :per_page <= 10
       @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
       @enterprises = Enterprise.paginate( :page => params[:page], :per_page => 10 )
     else
@@ -24,7 +23,6 @@ class EnterprisesController < ApplicationController
 
   def show()
 
-    assert :per_page == 10, "Should have 10 search result per page"
     @per_page = 10
     @page_num = show_page_num()
     @enterprise = Enterprise.find( params[:id] )
