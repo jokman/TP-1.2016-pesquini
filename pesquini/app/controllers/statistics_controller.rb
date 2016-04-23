@@ -162,6 +162,22 @@ class StatisticsController < ApplicationController
 
     state = State.find_by_abbreviation( params[:state_] )
 
+    @@sanction_type_list = sanction_type_find_by_description()
+
+    results2 << "Não Informado"
+      if ( params[:state_] && params[:state_] != "Todos" )
+        total =Sanction.where(state_id: state[:id] ).count
+      else
+        total = Sanction.count
+      end
+    results2 << ( total - cont )
+    results << results2
+    results = results.sort_by{ |i| i[0] }
+    results
+  end
+
+  def sanction_type_find_by_description()
+
     @@sanction_type_list.each do |s|
       Preconditions.check_not_nil( s )
       sanction = SanctionType.find_by_description( s[0] )
@@ -177,16 +193,7 @@ class StatisticsController < ApplicationController
       results << results2
       results2 = []
     end
-    results2 << "Não Informado"
-      if ( params[:state_] && params[:state_] != "Todos" )
-        total =Sanction.where(state_id: state[:id] ).count
-      else
-        total = Sanction.count
-      end
-    results2 << ( total - cont )
-    results << results2
-    results = results.sort_by{ |i| i[0] }
-    results
+
   end
 
 end
