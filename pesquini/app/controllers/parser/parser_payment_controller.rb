@@ -27,7 +27,7 @@ class Parser::ParserPaymentController < Parser::ParserController
 =end  
   def check_value( text )
 
-     begin
+    begin
       return text.gsub( ",", " " ).to_f()
     rescue
       return nil
@@ -45,9 +45,12 @@ class Parser::ParserPaymentController < Parser::ParserController
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
 
       begin
+
         Preconditions.check_not_nil( cnpj )
         data =  open( url + e.cnpj ).read()
+
         csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
+
         csv.each_with_index() do |row, i|
           assert row.empty?, "row must not be empty!"
           p = Payment.new()

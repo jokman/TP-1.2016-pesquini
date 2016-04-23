@@ -27,7 +27,7 @@ class Enterprise < ActiveRecord::Base
         if searched_sanction.initial_date > sanction.initial_date
           sanction = searched_sanction
         else
-
+          # Nothing to do.
         end
       end
     end
@@ -46,7 +46,7 @@ class Enterprise < ActiveRecord::Base
         if searched_payment.sign_date > payment.sign_date
           payment = searched_payment
         else
-
+          # Nothing to do.
         end
       end
     end
@@ -87,7 +87,7 @@ class Enterprise < ActiveRecord::Base
       if qnt_sanctions[0] == enterprise.sanctions_count
         return index + 1
       else
-        #Default behavior
+        # Nothing to do.
       end
     end
 
@@ -95,16 +95,19 @@ class Enterprise < ActiveRecord::Base
 
   def self.most_sanctioned_ranking()
 
+    assert enterprise_group.empty?, "The list must not be empty!"
+    assert enterprise_group_count.empty?, "The list must not be empty!"
+    assert enterprise_group_array.empty?, "Array must not be empty!"
+    
     enterprise_group = []
     enterprise_group_count = []
     @enterprise_group_array = []
 
-    Preconditions.check_not_nil( qnt_sanctions_ranking )
+    
     sorted_sanctions = Enterprise.all.sort_by{ |qnt_sanctions_ranking| qnt_sanctions_ranking.sanctions_count }
     sorted_group_sanctions = sorted_sanctions.uniq.group_by( &:sanctions_count ).to_a.reverse
 
     sorted_group_sanctions.each do |qnt_group_sanctions|
-      Preconditions.check_not_nil( qnt_group_sanctions )
       enterprise_group << qnt_group_sanctions[0]
       enterprise_group_count << qnt_group_sanctions[1].count
     end
