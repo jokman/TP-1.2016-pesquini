@@ -66,21 +66,21 @@ class StatisticsController < ApplicationController
   end
 
   def sanction_by_state_graph_information()
-    
-    LazyHighCharts::HighChart.new( "graph" ) do |f|
-      Preconditions.check_not_nil( f )
-      f.title( :text => titulo )
+
+    LazyHighCharts::HighChart.new( "graph" ) do |parameters|
+      Preconditions.check_not_nil( parameters )
+      parameters.title( :text => titulo )
       if( params[:year_].to_i() != 0 )
-        f.title(:text => params[:year_].to_i() )
+        parameters.title(:text => params[:year_].to_i() )
       else
         # Nothing to do.
       end
-      f.xAxis( :categories => @@states_list )
-      f.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
-      f.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
-      f.legend( :align => "right", :verticalAlign => "top", :y => 75, 
+      parameters.xAxis( :categories => @@states_list )
+      parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
+      parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
+      parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
                 :x => -50, :layout => "vertical", )
-      f.chart( {:defaultSeriesType => "column"} )
+      parameters.chart( {:defaultSeriesType => "column"} )
     end
 
   end
@@ -112,7 +112,7 @@ class StatisticsController < ApplicationController
       f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
       f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
       f.options[:title][:text] = titulo
-      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto', 
+      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
                 :right => "50px", :top => "100px"} )
       f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
                       :dataLabels => {:enabled => true, :color => "black",
@@ -127,7 +127,7 @@ class StatisticsController < ApplicationController
     assert results.empty?, "The list must not be empty!"
     results = []
     @years = @@sanjana
-    
+
     @@states_list.each() do |s|
       Preconditions.check_not_nil( s )
       state = State.find_by_abbreviation( "#{s}" )
@@ -187,5 +187,5 @@ class StatisticsController < ApplicationController
     results = results.sort_by{ |i| i[0] }
     results
   end
-  
+
 end
