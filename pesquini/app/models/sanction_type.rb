@@ -14,7 +14,7 @@ class SanctionType < ActiveRecord::Base
   def refresh!()
 
     Preconditions.check_not_nil( description )
-    s = SanctionType.find_by_description( self.description )
+    finded_sanction_description = SanctionType.find_by_description( self.description )
 
   end
 
@@ -30,12 +30,12 @@ class SanctionType < ActiveRecord::Base
       [ "SUSPENSãO - LEI DE LICITAçõES","Suspensão - Lei de Impedimento Licitações"],
       [ "SUSPENSãO - LEGISLAçãO ESTADUAL", "Suspensão - Legislação estadual"],
       [ "PROIBIçãO - LEI DE IMPROBIDADE", "Proibição - Lei de improbidade"],
-      [ "DECISãO JUDICIAL LIMINAR/CAUTELAR QUE IMPEçA CONTRATAçãO", 
+      [ "DECISãO JUDICIAL LIMINAR/CAUTELAR QUE IMPEçA CONTRATAçãO",
       	"Decisão Judicial liminar"],
       [ "INIDONEIDADE - LEI DA ANTT E ANTAQ ", "Inidoneidade - Lei da ANTT e ANTAQ"],
       [ "INIDONEIDADE - LEI ORGâNICA TCU", "Inidoneidade - Lei Orgânica TCU"],
       [ "IMPEDIMENTO - LEGISLAçãO ESTADUAL", "Impedimento - Legislação Estadual"],
-      [ "SUSPENSãO E IMPEDIMENTO - LEI DE ACESSO à INFORMAçãO", 
+      [ "SUSPENSãO E IMPEDIMENTO - LEI DE ACESSO à INFORMAçãO",
       	"Suspensão e Impedimento - Lei de Acesso à Informação"],
       [ "PROIBIçãO - LEI ANTITRUSTE", "Proibição - Lei Antitruste"],
       [ "IMPEDIMENTO - LEI DO RDC", "Impedimento - Lei do RDC"],

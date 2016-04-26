@@ -20,6 +20,7 @@ class StatisticsController < ApplicationController
 
     assert enterprise_group_array.empty?, "Array must not be empty!"
     enterprise_group_array = Enterprise.most_sanctioned_ranking()
+
     @enterprise_group = enterprise_group_array[0]
     @enterprise_group_count = enterprise_group_array[1]
 
@@ -28,9 +29,9 @@ class StatisticsController < ApplicationController
   def most_paymented_ranking()
 
     @all = false
-    if params[:sanjana]
-      Preconditions.check_not_nil( :sanjana )
-      assert :per_page <= 20
+
+    Preconditions.check_not_nil( :sanjana )
+    if params[:sanjana]  
       @all = true
       @enterprises = Enterprise.featured_payments.paginate( :page => params[:page], :per_page => 20 )
     else
@@ -61,40 +62,35 @@ class StatisticsController < ApplicationController
     gon.dados = total_by_state
     titulo = "Gráfico de Sanções por Estado"
 
-    @chart = LazyHighCharts::HighChart.new( "graph" ) do |f|
-      Preconditions.check_not_nil( f )
-      f.title( :text => titulo )
+    @chart = sanction_by_state_graph_information()
+
+  end
+
+  def sanction_by_state_graph_information()
+
+    LazyHighCharts::HighChart.new( "graph" ) do |parameters|
+      Preconditions.check_not_nil( parameters )
+      parameters.title( :text => titulo )
       if( params[:year_].to_i() != 0 )
-        f.title(:text => params[:year_].to_i() )
+        parameters.title(:text => params[:year_].to_i() )
       else
-        # Default behavior.
+        # Nothing to do.
       end
-      f.xAxis( :categories => @@states_list )
-      f.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
-      f.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
-      f.legend( :align => "right", :verticalAlign => "top", :y => 75, 
+      parameters.xAxis( :categories => @@states_list )
+      parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
+      parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
+      parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
                 :x => -50, :layout => "vertical", )
-      f.chart( {:defaultSeriesType => "column"} )
+      parameters.chart( {:defaultSeriesType => "column"} )
     end
 
   end
 
- def sanction_by_type_graph()
+  def sanction_by_type_graph()
 
     titulo = "Gráfico Sanções por Tipo"
 
-    @chart = LazyHighCharts::HighChart.new( "pie" ) do |f|
-      Preconditions.check_not_nil( f )
-      f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
-      f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
-      f.options[:title][:text] = titulo
-      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto', 
-                :right => "50px", :top => "100px"} )
-      f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
-                      :dataLabels => {:enabled => true, :color => "black",
-                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
-      } )
-    end
+    @chart = sanction_by_type_graph_information()
 
     if ( !@states )
       @states = @@states_list.clone
@@ -110,23 +106,42 @@ class StatisticsController < ApplicationController
 
   end
 
+  def sanction_by_type_graph_information()
+
+    LazyHighCharts::HighChart.new( "pie" ) do |f|
+      Preconditions.check_not_nil( f )
+      f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
+      f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
+      f.options[:title][:text] = titulo
+      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
+                :right => "50px", :top => "100px"} )
+      f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
+                      :dataLabels => {:enabled => true, :color => "black",
+                      :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
+      } )
+    end
+
+  end
+
   def total_by_state()
 
     assert results.empty?, "The list must not be empty!"
     results = []
     @years = @@sanjana
-    
+
     @@states_list.each() do |s|
       Preconditions.check_not_nil( s )
       state = State.find_by_abbreviation( "#{s}" )
       sanctions_by_state = Sanction.where( state_id: state[:id] )
+
+      assert selected_year.empty, "List can't be empty."
       selected_year = []
       if( params[:year_].to_i() != 0 )
         sanctions_by_state.each do |s|
           if( s.initial_date.year() ==  params[:year_].to_i() )
             selected_year << s
           else
-            # Default behavior.
+            # Nothing to do.
           end
       end
         results << ( selected_year.count() )
@@ -134,6 +149,7 @@ class StatisticsController < ApplicationController
         results << ( sanctions_by_state.count() )
       end
     end
+
     results
 
   end
@@ -155,7 +171,7 @@ class StatisticsController < ApplicationController
       if( params[:state_] && params[:state_] != "Todos" )
         sanctions_by_type = sanctions_by_type.where( state_id: state[:id] )
       else
-        # Default behavior.
+        # Nothing to do.
       end
       cont = cont + ( sanctions_by_type.count )
       results2 << s[1]
@@ -163,6 +179,7 @@ class StatisticsController < ApplicationController
       results << results2
       results2 = []
     end
+
     results2 << "Não Informado"
       if ( params[:state_] && params[:state_] != "Todos" )
         total =Sanction.where(state_id: state[:id] ).count
@@ -174,5 +191,5 @@ class StatisticsController < ApplicationController
     results = results.sort_by{ |i| i[0] }
     results
   end
-  
+
 end

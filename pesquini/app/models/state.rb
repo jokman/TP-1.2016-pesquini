@@ -14,7 +14,7 @@ class State < ActiveRecord::Base
   def refresh!()
 
     Preconditions.check_not_nil( abbreviation )
-    s = State.find_by_abbreviation( self.abbreviation )
+    finded_sanction_abbreviaton = State.find_by_abbreviation( self.abbreviation )
 
   end
 

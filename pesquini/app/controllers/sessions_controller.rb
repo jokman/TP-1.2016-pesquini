@@ -37,9 +37,9 @@ class SessionsController < ApplicationController
       sign_out 
       redirect_to root_path
     else
-      # Default behavior.
+      # Nothing to do.
     end
 
-
   end
+  
 end
