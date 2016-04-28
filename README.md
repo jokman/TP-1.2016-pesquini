@@ -24,4 +24,6 @@ Project used in the discipline programming pratices, taught in Faculdade UnB Gam
 
 YARD is a documentation generation tool for the Ruby programming language. It enables the user to generate consistent, usable documentation that can be exported to a number of formats very easily, and also supports extending for custom Ruby constructs such as custom class level definitions.
 
+Yard version: 0.8.7.6
+
 https://rubygems.org/gems/yard
