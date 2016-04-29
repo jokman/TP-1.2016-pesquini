@@ -29,7 +29,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
   # 
   # Method that check's for empty ascii caracters in data file.
-  # @param text [String] use to check if ascii caracter is null.
+  # @param text [String] Keeps the string with the upcase form.
   # 
   # @return [String] text in upcase form.
   def check_nil_ascii( text )
