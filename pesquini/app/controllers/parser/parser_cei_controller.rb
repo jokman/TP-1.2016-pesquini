@@ -155,11 +155,11 @@ class Parser::ParserCeiController < Parser::ParserController
   end
 
   
-    # 
-    # Method that check and save the data.
-    # @param check [String] Use to check if content.
-    # 
-    # @return [String] Save the content after it been checked.
+  # 
+  # Method that check and save the data.
+  # @param check [String] Use to check content.
+  # 
+  # @return [String] Save the content after it has been checked.
   def check_and_save( check )
 
     Preconditions.check_argument( check ) { is_not_nil }
