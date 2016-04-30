@@ -76,7 +76,7 @@ class Enterprise < ActiveRecord::Base
     # [String] Receives last sanction.
     sanction = last_sanction
 
-    # [String] Receives laste payment received by an enterprise.
+    # [String] Receives last payment received by an enterprise.
     payment = last_payment
 
     if sanction && payment
@@ -112,7 +112,7 @@ class Enterprise < ActiveRecord::Base
     # [String] keep features sanctions ordered.
     orderedSanc = self.featured_sanctions
 
-    # [String] put sanctions ina group.
+    # [String] put sanctions in a group.
     groupedSanc = orderedSanc.uniq.group_by( &:sanctions_count ).to_a
 
     groupedSanc.each_with_index do |qnt_sanctions, index|
