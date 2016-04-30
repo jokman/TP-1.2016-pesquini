@@ -45,10 +45,7 @@ class Parser::ParserPaymentController < Parser::ParserController
   end
 
   # 
-  # Import the data from the site.
-  # @attr url [String] Keeps the url from site that has contratos.csv file.
-  # @attr data [String] Open url and enterprise cnpj and read it.
-  # @attr csv [String] Parser the CSV.
+  # Import the data from the site. 
   # 
   # @return [String] Enterprises without payment.
   def import()
@@ -58,13 +55,18 @@ class Parser::ParserPaymentController < Parser::ParserController
     Enterprise.find_each() do |enterprise|
 
       Preconditions.check_not_nil( url )
+
+      # [String] Keeps the url from site that has contratos.csv file.
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
 
       begin
 
         Preconditions.check_not_nil( cnpj )
+
+        # [String] Open url and enterprise cnpj and read it.
         data =  open( url + enterprise.cnpj ).read()
 
+        # [String] Parser the CSV.
         csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
 
         csv.each_with_index() do |row, i|

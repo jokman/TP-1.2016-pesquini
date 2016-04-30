@@ -19,11 +19,11 @@ class Enterprise < ActiveRecord::Base
 
   # 
   # Method that informs the last penalty.
-  # @attr sanction [String] receives last sanction.
   # 
   # @return [String] last searched sanction.
   def last_sanction()
 
+    # Receives last sanction.
     sanction = self.sanctions.last
 
     unless sanction.nil?()
@@ -44,11 +44,11 @@ class Enterprise < ActiveRecord::Base
 
   # 
   # Method that informs the last payment received.
-  # @attr payment [String] Receives laste payment received by an enterprise.
   # 
   # @return [String] last payment received.
   def last_payment()
 
+    # [String] Receives last payment received by an enterprise.
     payment = self.payments.last()
 
     unless payment.nil?()
@@ -69,13 +69,14 @@ class Enterprise < ActiveRecord::Base
 
   # 
   # Method that tells whether there were payments after a penalty.
-  # @attr sanction [String] Receives last sanction.
-  # @attr payment [String] Receives laste payment received by an enterprise.
   # 
   # @return 
   def payment_after_sanction?()
 
+    # [String] Receives last sanction.
     sanction = last_sanction
+
+    # [String] Receives laste payment received by an enterprise.
     payment = last_payment
 
     if sanction && payment
@@ -93,6 +94,8 @@ class Enterprise < ActiveRecord::Base
   def refresh!()
 
     Preconditions.check_not_nil( cnpj )
+
+    # [String] keep enterprise searched.
     searched_enterprise = Enterprise.find_by_cnpj( self.cnpj )
 
   end
@@ -100,15 +103,16 @@ class Enterprise < ActiveRecord::Base
   # 
   # Method that organizes the companies position amount of sanctions.
   # @param enterprise [String] keeps a enterprise.
-  # @attr orderedSanc [String] keep features sanctions ordered.
-  # @attr groupedSanc [String] put sanctions ina group.
   # 
   # @return enterprise by its position.
   def self.enterprise_position( enterprise )
 
     Preconditions.check_not_nil( enterprise )
 
+    # [String] keep features sanctions ordered.
     orderedSanc = self.featured_sanctions
+
+    # [String] put sanctions ina group.
     groupedSanc = orderedSanc.uniq.group_by( &:sanctions_count ).to_a
 
     groupedSanc.each_with_index do |qnt_sanctions, index|
@@ -125,9 +129,6 @@ class Enterprise < ActiveRecord::Base
 
   # 
   # Method shows that the most sanctioned companies to build a ranking.
-  # @attr @enterprise_group_array [String] Keeps a list of most sanctioned enterprises.
-  # @attr sorted_sanctions [String] sort sanctions counted.
-  # @attr sorted_group_sanctions [String] reverse sort.
   # 
   # @return [String] a list with the enterprises with more sanctions.
   def self.most_sanctioned_ranking()
@@ -140,8 +141,10 @@ class Enterprise < ActiveRecord::Base
     enterprise_group_count = []
     @enterprise_group_array = []
 
-    
+    # [String] sort sanctions counted.
     sorted_sanctions = Enterprise.all.sort_by{ |qnt_sanctions_ranking| qnt_sanctions_ranking.sanctions_count }
+
+    # [String] reverse sort.
     sorted_group_sanctions = sorted_sanctions.uniq.group_by( &:sanctions_count ).to_a.reverse
 
     sorted_group_sanctions.each do |qnt_group_sanctions|
