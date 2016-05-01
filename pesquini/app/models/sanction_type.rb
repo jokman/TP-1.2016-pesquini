@@ -1,6 +1,6 @@
 =begin
 File: sanction_type.rb
-Purpose: Class to defines the types of sanctions..
+Purpose: Class to defines the types of sanctions.
 License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
@@ -11,18 +11,30 @@ class SanctionType < ActiveRecord::Base
   has_many :sanctions
   validates_uniqueness_of :description
 
+  # 
+  # Method that refresh enterprises searched by sanction type.
+  # 
+  # @return [String] sanction description.
   def refresh!()
 
     Preconditions.check_not_nil( description )
+
+    #  [String] receives sanction description.
     finded_sanction_description = SanctionType.find_by_description( self.description )
 
   end
 
 
+  # 
+  # Method to informs all the types of sanctions.
+  # 
+  # @return [String] sanction type.
   def self.all_sanction_types()
 
-    Preconditions.check_not_nil( stantion_types )
-    stantion_types = [
+    Preconditions.check_not_nil( sanction_types )
+
+    # [String] keeps the sanction type data.
+    sanction_types = [
       [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"],
       [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],
       [ "PROIBIçãO - LEI ELEITORAL", "Proibição - Lei Eleitoral"],
@@ -42,7 +54,7 @@ class SanctionType < ActiveRecord::Base
       [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
     ]
 
-    stantion_types
+    sanction_types
 
   end
 

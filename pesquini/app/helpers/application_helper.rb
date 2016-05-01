@@ -8,11 +8,11 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 module ApplicationHelper
 	
-		# 
-		# Method that informs the alerts.
-		# @param level [String] receive the types of alert.
-		# 
-		# @return [String] level with alert message.
+	# 
+	# Method that informs the alerts.
+	# @param level [String] receive the types of alert.
+	# 
+	# @return [String] level with alert message.
 	def flash_class( level )
 	
 		Preconditions.check_not_nil( level )
