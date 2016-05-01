@@ -1,6 +1,6 @@
 =begin
 File: application_helper_spec.rb
-Purpose: Informs the alerts.
+Purpose: Module with alerts levels.
 License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
@@ -8,6 +8,11 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 module ApplicationHelper
 	
+		# 
+		# Method that informs the alerts.
+		# @param level [String] receive the types of alert.
+		# 
+		# @return [String] level with alert message.
 	def flash_class( level )
 	
 		Preconditions.check_not_nil( level )
@@ -16,7 +21,7 @@ module ApplicationHelper
 		  when :success then "alert alert-success"
 		  when :error   then "alert alert-error"
 		  when :alert   then "alert alert-error"
-		  else "invalid error"
+		  else "invalid alert"
 		end
 	
 	end
