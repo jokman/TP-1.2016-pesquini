@@ -16,6 +16,11 @@ class StatisticsController < ApplicationController
 
   end
 
+  #
+  # Ranking companies according to the amount of sanctions.
+  #
+  # @return array of groups with the same amount of sanctions.
+
   def most_sanctioned_ranking()
 
     assert enterprise_group_array.empty?, "Array must not be empty!"
@@ -26,12 +31,16 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# Ranking companies according to the most payments a entreprises received.
+#
+# @return list of most payments received for a enterprises.
   def most_paymented_ranking()
 
     @all = false
 
     Preconditions.check_not_nil( :sanjana )
-    if params[:sanjana]  
+    if params[:sanjana]
       @all = true
       @enterprises = Enterprise.featured_payments.paginate( :page => params[:page], :per_page => 20 )
     else
@@ -40,6 +49,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# Define largest sanctioned groups.
+#
+# @return group of most sanctioned enterprises.
   def enterprise_group_ranking()
 
     @quantidade = params[:sanctions_count]
@@ -48,6 +61,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# Define largest payments groups.
+#
+# @return group of most payments receiveds for enterprises.
   def payment_group_ranking()
 
     @quantidade = params[:payments_count]
@@ -56,6 +73,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# Plotting by state sanctions chart.
+#
+# @return chart.
   def sanction_by_state_graph()
 
     gon.states = @@states_list
@@ -66,6 +87,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# Plotting by state sanctions informations chart.
+#
+# @return informations chart.
   def sanction_by_state_graph_information()
 
     LazyHighCharts::HighChart.new( "graph" ) do |parameters|
@@ -86,6 +111,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# Plotting type of sanctions chart.
+#
+# @return type of sanctions chart.
   def sanction_by_type_graph()
 
     titulo = "Gráfico Sanções por Tipo"
@@ -106,6 +135,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# Plotting type of sanctions information chart.
+#
+# @return type of sanctions information chart.
   def sanction_by_type_graph_information()
 
     LazyHighCharts::HighChart.new( "pie" ) do |f|
@@ -123,6 +156,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# List of total of sanctions in a especific state in a especific year.
+#
+# @return list of sacntions in a state on a year.
   def total_by_state()
 
     assert results.empty?, "The list must not be empty!"
@@ -154,6 +191,10 @@ class StatisticsController < ApplicationController
 
   end
 
+#
+# List of total of type sanctions in a especific state in a especific year.
+#
+# @return list of total sanctions in a state on a year.
   def total_by_type()
 
     assert results.empty?, "The list must not be empty!"

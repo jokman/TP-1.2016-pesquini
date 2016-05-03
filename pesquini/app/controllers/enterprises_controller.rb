@@ -21,6 +21,10 @@ class EnterprisesController < ApplicationController
 
   end
 
+  #
+  # Method to show enterprises attributes.
+  #
+  # @return
   def show()
 
     @per_page = 10
@@ -35,6 +39,10 @@ class EnterprisesController < ApplicationController
 
   end
 
+  #
+  # Method to show the page number.
+  #
+  # @return page_num
   def show_page_num()
 
     if params[:page].to_i > 0
@@ -45,12 +53,16 @@ class EnterprisesController < ApplicationController
 
   end
 
+  #
+  # Method that manipulates the payments to the enterprise.
+  #
+  # @return position of most payment enterprises.
   def enterprise_payment_position( enterprise )
 
     payment_position = Enterprise.featured_payments
 
     payment_position.each_with_index do |total_sum, index|
-      
+
       Preconditions.check_not_nil( total_sum )
       Preconditions.check( index ) { index >= 0 }
       if total_sum.payments_sum == enterprise.payments_sum

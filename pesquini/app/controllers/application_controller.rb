@@ -1,6 +1,6 @@
 =begin
 File: application_controller.rb
-Purpose: Contains errors methods.
+Purpose: Raise an exception in case the application doesn't start right.
 License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
   rescue_from ActionController::RoutingError, :with => :render_not_found
 
+  # 
+  # Send a message in case has a routing problem.
+  # 
+  # @return exception.
   def raise_not_found!()
 
     raise ActionController::RoutingError.
@@ -26,9 +30,14 @@ class ApplicationController < ActionController::Base
 
   end
 
+  # 
+  # Gives an error 404.
+  # 
+  # @return error 404 in a html page.
   def render_not_found()
 
     respond_to do |error404|
+
       Preconditions.check_not_nil( error404 )
       error404.html{ render :template => "errors/404", :status => 404 }
     end

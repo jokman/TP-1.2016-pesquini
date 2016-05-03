@@ -1,6 +1,6 @@
 =begin
 File: enterprise.rb
-Purpose: Class that validate the field CNPJ, and register an enterprise.
+Purpose: Class that search, sort and ranking enterprises by position and sanction.
 License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
@@ -17,12 +17,18 @@ class Enterprise < ActiveRecord::Base
   scope :featured_payments, -> ( number = nil ){number ? order( "payments_sum DESC" )
                                               .limit( number ) :order( "payments_sum DESC" ) }
 
-   def last_sanction()
+  # 
+  # Method that informs the last penalty.
+  # 
+  # @return [String] last searched sanction.
+  def last_sanction()
 
+    # Receives last sanction.
     sanction = self.sanctions.last
 
     unless sanction.nil?()
       self.sanctions.each do |searched_sanction|
+
         Preconditions.check_not_nil( searched_sanction )
         if searched_sanction.initial_date > sanction.initial_date
           sanction = searched_sanction
@@ -36,12 +42,18 @@ class Enterprise < ActiveRecord::Base
 
   end
 
+  # 
+  # Method that informs the last payment received.
+  # 
+  # @return [String] last payment received.
   def last_payment()
 
+    # [String] Receives last payment received by an enterprise.
     payment = self.payments.last()
 
     unless payment.nil?()
       self.payments.each do |searched_payment|
+
          Preconditions.check_not_nil( searched_payment )
         if searched_payment.sign_date > payment.sign_date
           payment = searched_payment
@@ -55,9 +67,16 @@ class Enterprise < ActiveRecord::Base
 
   end
 
+  # 
+  # Method that tells whether there were payments after a penalty.
+  # 
+  # @return 
   def payment_after_sanction?()
 
+    # [String] Receives last sanction.
     sanction = last_sanction
+
+    # [String] Receives last payment received by an enterprise.
     payment = last_payment
 
     if sanction && payment
@@ -68,21 +87,36 @@ class Enterprise < ActiveRecord::Base
 
   end
 
+  # 
+  # Method that refresh enterprises searched by CNPJ.
+  # 
+  # @return [String] result of search.
   def refresh!()
 
     Preconditions.check_not_nil( cnpj )
-    new_enterprise = Enterprise.find_by_cnpj( self.cnpj )
+
+    # [String] keep enterprise searched.
+    searched_enterprise = Enterprise.find_by_cnpj( self.cnpj )
 
   end
 
+  # 
+  # Method that organizes the companies position amount of sanctions.
+  # @param enterprise [String] keeps a enterprise.
+  # 
+  # @return enterprise by its position.
   def self.enterprise_position( enterprise )
 
     Preconditions.check_not_nil( enterprise )
 
+    # [String] keep features sanctions ordered.
     orderedSanc = self.featured_sanctions
+
+    # [String] put sanctions in a group.
     groupedSanc = orderedSanc.uniq.group_by( &:sanctions_count ).to_a
 
     groupedSanc.each_with_index do |qnt_sanctions, index|
+
       Preconditions.check_not_nil( qnt_sanctions )
       if qnt_sanctions[0] == enterprise.sanctions_count
         return index + 1
@@ -93,6 +127,10 @@ class Enterprise < ActiveRecord::Base
 
   end
 
+  # 
+  # Method shows that the most sanctioned companies to build a ranking.
+  # 
+  # @return [String] a list with the enterprises with more sanctions.
   def self.most_sanctioned_ranking()
 
     assert enterprise_group.empty?, "The list must not be empty!"
@@ -103,8 +141,10 @@ class Enterprise < ActiveRecord::Base
     enterprise_group_count = []
     @enterprise_group_array = []
 
-    
+    # [String] sort sanctions counted.
     sorted_sanctions = Enterprise.all.sort_by{ |qnt_sanctions_ranking| qnt_sanctions_ranking.sanctions_count }
+
+    # [String] reverse sort.
     sorted_group_sanctions = sorted_sanctions.uniq.group_by( &:sanctions_count ).to_a.reverse
 
     sorted_group_sanctions.each do |qnt_group_sanctions|

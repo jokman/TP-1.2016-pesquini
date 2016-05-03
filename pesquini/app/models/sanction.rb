@@ -1,6 +1,6 @@
 =begin
 File: sanction.rb
-Purpose: Class with information of sanctions.
+Purpose: Class with information of sanctions by year.
 License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
@@ -16,6 +16,10 @@ class Sanction < ActiveRecord::Base
 
   scope :by_year, lambda { |year| where( "extract(year from initial_date) = ?", year ) }
 
+  # 
+  # Method that define all years that have sanctions on data.
+  # 
+  # @return [String] years.
   def self.all_years()
 
     Preconditions.check_not_nil( years )
@@ -26,19 +30,33 @@ class Sanction < ActiveRecord::Base
 
   end
 
+  # 
+  # Method that refresh sanctions searched by process number.
+  # 
+  # @return [String] result of search. 
   def refresh!()
 
     Preconditions.check_not_nil( process_number )
-    finded_process_number = Sanction.find_by_process_number( self.process_number )
+
+    # keeps the sanction finded by process.
+    finded_sanction = Sanction.find_by_process_number( self.process_number )
 
   end
 
-   def self.percentual_sanction( value )
+  # 
+  # Method for calculating the percentage of sanctions.
+  # @param value [Double] receives a percentage of the total value.
+  # 
+  # @return [Double] percentage.
+  def self.percentual_sanction( value )
 
     Preconditions.check(total) { is_not_nil and has_type( Interger ) and satisfies("> 0") { total > 0 } }
-    Preconditions.check( value ) { is_not_nil and has_type( Float ) }
+    Preconditions.check( value ) { is_not_nil and has_type( Double ) }
+
+    # [Interger] receives the full amount.
     total = Sanction.all.count
-    value * 100.0 / total
+
+    value = value * 100.0 / total
 
   end
 
