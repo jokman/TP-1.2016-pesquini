@@ -8,10 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class Parser::ParserCeiController < Parser::ParserController
 
-  require 'csv'
-
-  # Keeps the .csv file.
-  @@filename = 'parser_data/CEIS.csv' 
+  require 'csv' 
 
   # Authorize filter only with that caracteristics checked.
   before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
@@ -35,6 +32,7 @@ class Parser::ParserCeiController < Parser::ParserController
   def check_nil_ascii( text )
 
     Preconditions.check_argument( text ) { is_not_nil }
+    
     if text.include?( "\u0000" )
       return "Não Informado"
     else
@@ -66,7 +64,6 @@ class Parser::ParserCeiController < Parser::ParserController
   # @return [String] sanction object.
   def import()
 
-    xd = 0
     CSV.foreach( @@filename, :headers => true, :col_sep => "\t",
                  :encoding => 'ISO-8859-1' ) do |row|
       data = row.to_hash

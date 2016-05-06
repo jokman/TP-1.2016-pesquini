@@ -10,9 +10,6 @@ class Parser::ParserController < ApplicationController
 
   require 'csv'
 
-  # Keeps the .csv file.
-  @@filename = 'parser_data/CEIS.csv'
-
   # Authorize filter only with that caracteristics checked.
   before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
                                        :build_state, :build_sanction_type, 
@@ -35,6 +32,7 @@ class Parser::ParserController < ApplicationController
   def check_nil_ascii( text )
 
     Preconditions.check_argument( text ) { is_not_nil }
+
     if text.include?( "\u0000" )
       return "Não Informado"
     else
@@ -51,6 +49,7 @@ class Parser::ParserController < ApplicationController
   def check_date( text )
 
     Preconditions.check_argument( text ) { is_not_nil }
+
     begin
       return text.to_date()
     rescue
@@ -67,6 +66,7 @@ class Parser::ParserController < ApplicationController
   def check_and_save( check )
 
     Preconditions.check_argument( check ) { is_not_nil }
+
     begin
       check.save!
       check
