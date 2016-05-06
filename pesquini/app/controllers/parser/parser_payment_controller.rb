@@ -11,9 +11,6 @@ class Parser::ParserPaymentController < Parser::ParserController
   require 'csv'
   require 'open-uri'
 
-  # Keeps the .csv file.
-  @@filename = 'parser_data/CEIS.csv'
-
   # Authorize filter only with that caracteristics checked.
   before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
                                        :build_state, :build_sanction_type, 
@@ -60,7 +57,6 @@ class Parser::ParserPaymentController < Parser::ParserController
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
 
       begin
-
         Preconditions.check_not_nil( cnpj )
 
         # [String] Open url and enterprise cnpj and read it.
@@ -101,6 +97,7 @@ class Parser::ParserPaymentController < Parser::ParserController
   def check_and_save( check )
 
     Preconditions.check_not_nil( check )
+
     begin
       check.save!
       check
