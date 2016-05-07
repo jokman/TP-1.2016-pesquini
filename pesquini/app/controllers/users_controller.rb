@@ -19,6 +19,8 @@ class UsersController < ApplicationController
   	# [String] Keeps new user created.
     @user = User.new()
 
+    return @user
+
   end
 
 end

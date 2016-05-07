@@ -38,7 +38,7 @@ class Enterprise < ActiveRecord::Base
       end
     end
 
-    sanction
+    return sanction
 
   end
 
@@ -63,7 +63,7 @@ class Enterprise < ActiveRecord::Base
       end
     end
 
-    payment
+    return payment
 
   end
 
@@ -85,6 +85,8 @@ class Enterprise < ActiveRecord::Base
       false
     end
 
+    return payment
+
   end
 
   # 
@@ -97,6 +99,8 @@ class Enterprise < ActiveRecord::Base
 
     # [String] keep enterprise searched.
     searched_enterprise = Enterprise.find_by_cnpj( self.cnpj )
+
+    return searched_enterprise
 
   end
 
@@ -154,7 +158,8 @@ class Enterprise < ActiveRecord::Base
 
     @enterprise_group_array << enterprise_group
     @enterprise_group_array << enterprise_group_count
-    @enterprise_group_array
+    
+    return @enterprise_group_array
 
   end
 

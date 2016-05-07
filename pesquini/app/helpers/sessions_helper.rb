@@ -28,11 +28,13 @@ module SessionsHelper
 
     # [String] check the correct user logged in.
 	  self.current_user = user
+
+    return current_user
 	
 	end
 	
   # 
-  # Method to return current user.
+  # @deprecated  Method to return current user.
   # @param user [String] contains session user login information.
   # 
   # @return [String] user logged.
@@ -54,6 +56,8 @@ module SessionsHelper
 
     # [String] keeps user foud by it's password.
 	  @current_user ||= User.find_by( remember_token: remember_token )
+
+    return @current_user
   	
   end
   	
@@ -65,6 +69,8 @@ module SessionsHelper
   def signed_in?()
     
     !current_user.nil?
+
+    return current_user
   	
   end
 
@@ -93,6 +99,8 @@ module SessionsHelper
 
     # [String] sign out user.
     self.current_user = nil
+
+    return current_user
     
   end
 
