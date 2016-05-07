@@ -97,7 +97,8 @@ class Parser::ParserCeiController < Parser::ParserController
     new_state = State.new()
 
     new_state.abbreviation = check_nil_ascii( row_data["UF Órgão Sancionador"] )
-    check_and_save( new_state )
+    
+    return check_and_save( new_state )
 
   end
   
@@ -114,7 +115,8 @@ class Parser::ParserCeiController < Parser::ParserController
     new_sanction_type = SanctionType.new() 
        
     new_sanction_type.description = check_nil_ascii( row_data["Tipo Sanção"] )
-    check_and_save( new_sanction_type )
+
+    return check_and_save( new_sanction_type )
 
   end
  
@@ -133,7 +135,8 @@ class Parser::ParserCeiController < Parser::ParserController
     new_enterprise.cnpj = row_data["CPF ou CNPJ do Sancionado"]
     # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
     new_enterprise.corporate_name = check_nil_ascii( row_data["Razão Social - Cadastro Receita"] )
-    check_and_save( new_enterprise )
+
+    return check_and_save( new_enterprise )
 
   end
 
@@ -159,7 +162,8 @@ class Parser::ParserCeiController < Parser::ParserController
     new_sanction.sanction_type_id = sanction_type.id
     new_sanction.sanction_organ = check_nil_ascii( row_data["Órgão Sancionador"] )
     new_sanction.state_id = state.id
-    check_and_save( new_sanction )
+
+    return check_and_save( new_sanction )
 
   end
 
