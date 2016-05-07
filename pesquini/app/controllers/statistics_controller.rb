@@ -28,19 +28,27 @@ class StatisticsController < ApplicationController
   def most_sanctioned_ranking()
 
     assert enterprise_group_array.empty?, "Array must not be empty!"
+
+    # [String] keeps ranking of enterprises with most sanctions.
     enterprise_group_array = Enterprise.most_sanctioned_ranking()
 
+    # [String] keeps array of enterprises.
     @enterprise_group = enterprise_group_array[0]
+
+    # [String] keeps counting of enterprises group.
     @enterprise_group_count = enterprise_group_array[1]
+
+    return @enterprise_group_count
 
   end
 
   #
   # Ranking companies according to the most payments a entreprises received.
   #
-  # @return list of most payments received for a enterprises.
+  # @return enterperises by featured payments.
   def most_paymented_ranking()
 
+    # [Boolean] receives false value to sanction years.
     @all = false
 
     Preconditions.check_not_nil( :sanction_years )
@@ -51,43 +59,57 @@ class StatisticsController < ApplicationController
       @enterprises = Enterprise.featured_payments( 10 )
     end
 
+    return @enterprises
+
   end
 
   #
   # Define largest sanctioned groups.
   #
-  # @return group of most sanctioned enterprises.
+  # @return enterprises by sanctions.
   def enterprise_group_ranking()
 
     @quantidade = params[:sanctions_count]
     @enterprises = Enterprise.where( sanctions_count: @quantidade )
                                      .paginate( :page => params[:page], :per_page => 10 )
 
+    return @enterprises
+
   end
 
   #
   # Define largest payments groups.
   #
-  # @return group of most payments receiveds for enterprises.
+  # @return enterprises by payments.
   def payment_group_ranking()
 
     @quantidade = params[:payments_count]
     @enterprises = Enterprise.where( payments_count: @quantidade )
                                      .paginate( :page => params[:page], :per_page => 10)
 
+    return @enterprises
+
   end
 
   #
   # Plotting by state sanctions chart.
   #
-  # @return chart.
+  # @return state chart.
   def sanction_by_state_graph()
 
+    # [String] keeps list of states.
     gon.states = @@states_list
+
+    # [String] keeps total data by state.
     gon.dados = total_by_state
+
+    # [String] keeps graph title.
     titulo = "Gráfico de Sanções por Estado"
 
+    # receives information for plot graph.
     @chart = sanction_by_state_graph_information()
+
+    return @chart
 
   end
 
@@ -111,6 +133,8 @@ class StatisticsController < ApplicationController
       parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
                 :x => -50, :layout => "vertical", )
       parameters.chart( {:defaultSeriesType => "column"} )
+
+      return parameters
     end
 
   end
@@ -192,7 +216,7 @@ class StatisticsController < ApplicationController
       end
     end
 
-    results
+    return results
 
   end
 
