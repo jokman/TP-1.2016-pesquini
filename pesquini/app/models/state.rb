@@ -22,6 +22,8 @@ class State < ActiveRecord::Base
     # [String] receives found state.
     found_state_abbreviaton = State.find_by_abbreviation( self.abbreviation )
 
+    return found_state_abbreviaton
+
   end
 
   # 
@@ -37,7 +39,7 @@ class State < ActiveRecord::Base
               "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
               "TO", "GO", "PE", "AP", "MS", "MT", "MA", "Não Informado"]
 
-    states_abbreviation
+    return states_abbreviation
 
   end
 
