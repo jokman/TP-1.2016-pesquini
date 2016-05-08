@@ -10,6 +10,9 @@ class Parser::ParserCeiController < Parser::ParserController
 
   require 'csv' 
 
+  # Keeps the .csv file.
+  @@filename = 'parser_data/CEIS.csv'
+
   # Authorize filter only with that caracteristics checked.
   before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
                                        :build_state, :build_sanction_type, 
@@ -98,7 +101,9 @@ class Parser::ParserCeiController < Parser::ParserController
 
     new_state.abbreviation = check_nil_ascii( row_data["UF Órgão Sancionador"] )
     
-    return check_and_save( new_state )
+    check_and_save( new_state )
+
+    return new_state
 
   end
   
@@ -116,7 +121,9 @@ class Parser::ParserCeiController < Parser::ParserController
        
     new_sanction_type.description = check_nil_ascii( row_data["Tipo Sanção"] )
 
-    return check_and_save( new_sanction_type )
+    check_and_save( new_sanction_type )
+
+    return new_sanction_type
 
   end
  
@@ -136,7 +143,9 @@ class Parser::ParserCeiController < Parser::ParserController
     # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
     new_enterprise.corporate_name = check_nil_ascii( row_data["Razão Social - Cadastro Receita"] )
 
-    return check_and_save( new_enterprise )
+    check_and_save( new_enterprise )
+
+    return new_enterprise
 
   end
 
@@ -162,8 +171,9 @@ class Parser::ParserCeiController < Parser::ParserController
     new_sanction.sanction_type_id = sanction_type.id
     new_sanction.sanction_organ = check_nil_ascii( row_data["Órgão Sancionador"] )
     new_sanction.state_id = state.id
+    check_and_save( new_sanction )
 
-    return check_and_save( new_sanction )
+    return new_sanction
 
   end
 

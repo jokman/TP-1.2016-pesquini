@@ -66,8 +66,12 @@ class Parser::ParserPaymentController < Parser::ParserController
         csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
 
         csv.each_with_index() do |row, i|
+
           assert row.empty?, "row must not be empty!"
+
+          # [String] keeps payment created.
           payment = Payment.new()
+          
           payment.identifier = check_nil_ascii( row[0] )
           payment.process_number = check_nil_ascii( row[10] )
           payment.initial_value = check_value( row[16] )
@@ -78,6 +82,8 @@ class Parser::ParserPaymentController < Parser::ParserController
           enterprise.payments_sum = enterprise.payments_sum + payment.initial_value
           check_and_save( enterprise )
           check_and_save( payment )
+
+          return payment
         end
       rescue
         constante = constante + 1
