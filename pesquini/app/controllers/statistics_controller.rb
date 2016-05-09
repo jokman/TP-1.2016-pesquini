@@ -191,75 +191,99 @@ class StatisticsController < ApplicationController
   # @return list of sacntions in a state on a year.
   def total_by_state()
 
-    assert results.empty?, "The list must not be empty!"
-    results = []
-    @years = @@sanction_years
+    assert state_results.empty?, "The list must not be empty!"
+    
+    # [String] array of string that keep the results of sanctions by state.
+    sanction_by_state_results = []
 
-    @@states_list.each() do |s|
-      Preconditions.check_not_nil( s )
-      state = State.find_by_abbreviation( "#{s}" )
+    @@states_list.each() do |sanction_state|
+
+      Preconditions.check_not_nil( sanction_state )
+      Preconditions.check_not_nil( state )
+      Preconditions.check_not_nil( sanctions_by_state )
+
+      # [String] keeps state found by its abbreviation.
+      state = State.find_by_abbreviation( "#{sanction_state}" )
+
+      # [String] keeps sanctions in a state, by state id. 
       sanctions_by_state = Sanction.where( state_id: state[:id] )
 
       assert selected_year.empty, "List can't be empty."
+
+      # [Integer] array with year that has sanctions.
       selected_year = []
+
       if( params[:year_].to_i() != 0 )
-        sanctions_by_state.each do |s|
-          if( s.initial_date.year() ==  params[:year_].to_i() )
-            selected_year << s
+        sanctions_by_state.each do |sanction_state|
+          if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
+            selected_year << sanction_state
           else
             # Nothing to do.
           end
       end
-        results << ( selected_year.count() )
+        sanction_by_state_results << ( selected_year.count() )
       else
-        results << ( sanctions_by_state.count() )
+        sanction_by_state_results << ( sanctions_by_state.count() )
       end
     end
 
-    return results
+    return sanction_by_state_results
 
   end
 
   #
-  # List of total of type sanctions in a especific state in a especific year.
+  # List of total of sanctions by state in a especific state in a especific year.
   #
-  # @return list of total sanctions in a state on a year.
+  # @return list of total sanctions by its type.
   def total_by_type()
 
     assert results.empty?, "The list must not be empty!"
     assert results2.empty?, "The list must not be empty!"
+
+
     results = []
     results2 = []
     cont = 0
 
+    # [String] receives state by its abbreviation.
     state = State.find_by_abbreviation( params[:state_] )
 
-    @@sanction_type_list.each do |s|
-      Preconditions.check_not_nil( s )
-      sanction = SanctionType.find_by_description( s[0] )
+    @@sanction_type_list.each do |sanction_type_|
+
+      Preconditions.check_not_nil( sanction_type_ )
+
+      # [String] keeps sanction found by its description.
+      sanction = SanctionType.find_by_description( sanction_type_[0] )
+      
+      # [String] keeps sanction by its type.
       sanctions_by_type = Sanction.where( sanction_type:  sanction )
+
       if( params[:state_] && params[:state_] != "Todos" )
         sanctions_by_type = sanctions_by_type.where( state_id: state[:id] )
       else
         # Nothing to do.
       end
+
       cont = cont + ( sanctions_by_type.count )
-      results2 << s[1]
+      results2 << sanction_type_[1]
       results2 << ( sanctions_by_type.count )
       results << results2
       results2 = []
     end
 
     results2 << "Não Informado"
+      Preconditions.check_not_nil( total )
       if ( params[:state_] && params[:state_] != "Todos" )
-        total =Sanction.where(state_id: state[:id] ).count
+        total = Sanction.where(state_id: state[:id] ).count
       else
         total = Sanction.count
       end
+
     results2 << ( total - cont )
     results << results2
     results = results.sort_by{ |i| i[0] }
-    results
+
+    return results
   end
 
 end
