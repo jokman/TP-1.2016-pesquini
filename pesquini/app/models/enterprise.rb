@@ -129,6 +129,8 @@ class Enterprise < ActiveRecord::Base
       end
     end
 
+    return qnt_sanctions 
+    
   end
 
   # 
