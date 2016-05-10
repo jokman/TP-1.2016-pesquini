@@ -20,7 +20,9 @@ class SanctionType < ActiveRecord::Base
     Preconditions.check_not_nil( description )
 
     #  [String] receives sanction description.
-    finded_sanction_description = SanctionType.find_by_description( self.description )
+    found_sanction_description = SanctionType.find_by_description( self.description )
+
+    return found_sanction_description
 
   end
 
@@ -54,7 +56,7 @@ class SanctionType < ActiveRecord::Base
       [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
     ]
 
-    sanction_types
+    return sanction_types
 
   end
 

@@ -26,7 +26,7 @@ class Sanction < ActiveRecord::Base
     years = ["Todos", 1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
              2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
              2014, 2015]
-    years
+    return years
 
   end
 
@@ -39,8 +39,9 @@ class Sanction < ActiveRecord::Base
     Preconditions.check_not_nil( process_number )
 
     # keeps the sanction finded by process.
-    finded_sanction = Sanction.find_by_process_number( self.process_number )
+    found_sanction = Sanction.find_by_process_number( self.process_number )
 
+    return found_sanction
   end
 
   # 
@@ -57,6 +58,8 @@ class Sanction < ActiveRecord::Base
     total = Sanction.all.count
 
     value = value * 100.0 / total
+
+    return value
 
   end
 

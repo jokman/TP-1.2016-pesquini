@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
 
     Preconditions.check_not_nil( login )
     Preconditions.check_not_nil( password )
+    Preconditions.check_not_nil( user )
 
     # [String] Receive the parameters to login.
     login = params[:session][:login].downcase

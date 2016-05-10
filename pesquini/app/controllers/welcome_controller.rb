@@ -24,6 +24,8 @@ class WelcomeController < ApplicationController
     # [String] Keeps the result of the search.
     @enterprises = @search.result()
 
+    return @enterprises
+
   end
 
 end

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   # @return [String] token for password.
   def User.new_remember_token()
 
-  	SecureRandom.urlsafe_base64
+  	return SecureRandom.urlsafe_base64
 
   end
   	
@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
   def User.digest( token )
 
     Preconditions.check_not_nil( token )
-    Digest::SHA1.hexdigest( token.to_s )
+
+    return Digest::SHA1.hexdigest( token.to_s )
   
   end
 

@@ -23,6 +23,8 @@ module ApplicationHelper
 		  when :alert   then "alert alert-error"
 		  else "invalid alert"
 		end
+
+		return level
 	
 	end
 

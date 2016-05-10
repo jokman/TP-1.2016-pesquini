@@ -21,7 +21,9 @@ class Payment < ActiveRecord::Base
   	Preconditions.check_not_nil( process_number )
 
   	# [String] receives search result.
-    finded_payment = Payment.find_by_process_number( self.process_number )
+    found_payment = Payment.find_by_process_number( self.process_number )
+
+    return found_payment
 
   end
 

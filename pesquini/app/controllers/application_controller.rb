@@ -37,7 +37,6 @@ class ApplicationController < ActionController::Base
   def render_not_found()
 
     respond_to do |error404|
-
       Preconditions.check_not_nil( error404 )
       error404.html{ render :template => "errors/404", :status => 404 }
     end
