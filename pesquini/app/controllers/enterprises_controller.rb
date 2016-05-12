@@ -44,7 +44,7 @@ class EnterprisesController < ApplicationController
     @per_page = 10
 
     # [Integer] keeps page page number.
-    @page_num = show_page_num()
+    @page_number = show_page_number()
 
     # [String] keeps enterprise found by id.
     @enterprise = Enterprise.find( params[:id] )
@@ -73,17 +73,17 @@ class EnterprisesController < ApplicationController
   # Method to show the page number.
   #
   # @return [ Integer ] page number.
-  def show_page_num()
+  def show_page_number()
 
     Preconditions.check( @page_num ) { is_not_nil and has_type( Integer ) 
-                                       and satisfies( ">= 0" ) { @page_num >= 0 } }
+                                       and satisfies( "> 0" ) { @page_num > 0 } }
     if params[:page].to_i > 0
-      @page_num = params[:page].to_i  - 1
+      @page_number = params[:page].to_i  - 1
     else
-      @page_num = 0
+      @page_number = 0
     end
 
-    return @page_num
+    return @page_number
 
   end
 

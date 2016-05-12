@@ -2,7 +2,7 @@
 File: welcome_controller_spec.rb
 Purpose: Contains a unit test from class SessionController.
 License: GPL v3.
-Pesquini Group 6
+Pesquini Group 6.
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 

@@ -1,8 +1,8 @@
 =begin
-File: welcome_controller_spec.rb
+File: welcome_controller_spec.rb.
 Purpose: Class that does a unit test of parser_controller.
 License: GPL v3.
-Pesquini Group 6
+Pesquini Group 6.
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 

@@ -1,8 +1,8 @@
 =begin
-File: enterprise_controller_spec.rb
+File: enterprise_controller_spec.rb.
 Purpose: Contains a unit test from class EnterpriseController.
 License: GPL v3.
-Pesquini Group 6
+Pesquini Group 6.
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
@@ -29,7 +29,7 @@ RSpec.describe EnterprisesController, :type => :controller do
     
     describe "#show" do
     
-      describe 'with a registered enterprise' do 
+      describe "with a registered enterprise" do 
     
         it "should work" do
           get :show, :id => @enterprise.id
@@ -39,6 +39,18 @@ RSpec.describe EnterprisesController, :type => :controller do
       end
     
     end
+
+    describe "#show_page_number" do 
+
+      describe "with a registered enterprise" do
+
+        it "should work" do
+          get :show_page_number, :page => @page_number
+          expect( response ).to have_http_status( :success )
+        end
+
+      end
+    end 
   
   end
 
