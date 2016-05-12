@@ -1,12 +1,13 @@
 =begin
-File: state_spec.rb
+File: state_spec.rb.
 Purpose: Contains a unit test from class State.
 License: GPL v3.
-Pesquini Group 6
+Pesquini Group 6.
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
-require 'spec_helper'
-require 'rails_helper'
+
+require "spec_helper"
+require "rails_helper"
 
 describe State do
 
@@ -33,7 +34,7 @@ describe State do
         uniqueness_state = State.new
         uniqueness_state.abbreviation = "SP1"
         uniqueness_state.save 
-        expect(uniqueness_state).to be_valid
+        expect( uniqueness_state ).to be_valid
       end
 
     end
@@ -43,7 +44,7 @@ describe State do
         it "should not be_valid" do
         duplicated_state = State.new
         duplicated_state.abbreviation = "DF1" 
-        expect(duplicated_state).not_to be_valid
+        expect( duplicated_state ).not_to be_valid
       end
 
     end
@@ -60,11 +61,11 @@ describe State do
       end
 
       it "should return state" do
-        expect(@s.refresh!).to eq(@s);
+        expect( @s.refresh! ).to eq( @s );
       end
 
       it "should not return other state" do
-        expect(@s.refresh!).not_to eq(@state);
+        expect( @s.refresh! ).not_to eq( @state );
       end  
    
     end
