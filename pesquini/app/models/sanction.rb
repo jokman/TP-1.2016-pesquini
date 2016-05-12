@@ -51,7 +51,7 @@ class Sanction < ActiveRecord::Base
   # @return [Double] percentage.
   def self.percentual_sanction( value )
 
-    Preconditions.check(total) { is_not_nil and has_type( Interger ) and satisfies("> 0") { total > 0 } }
+    Preconditions.check( total ) { is_not_nil and has_type( Interger ) and satisfies("> 0") { total > 0 } }
     Preconditions.check( value ) { is_not_nil and has_type( Double ) }
 
     # [Interger] receives the full amount.

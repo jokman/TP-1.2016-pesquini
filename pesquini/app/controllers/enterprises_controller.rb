@@ -16,6 +16,9 @@ class EnterprisesController < ApplicationController
 
     if params[:q].nil?()
 
+      Preconditions.check_not_nil( @search )
+      Preconditions.check_not_nil( @enterprises )
+
       # [String] keeps enterprises search.
       @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
 
@@ -62,6 +65,8 @@ class EnterprisesController < ApplicationController
     # [Integer] keeps enterprise position.
     @position = Enterprise.enterprise_position( @enterprise )
 
+    return @position
+
   end
 
   #
@@ -93,6 +98,7 @@ class EnterprisesController < ApplicationController
     payment_position = Enterprise.featured_payments
 
     payment_position.each_with_index do |total_sum, index|
+
       Preconditions.check( total_sum ) { is_not_nil and has_type( double ) }
       Preconditions.check( index ) { index >= 0 }
       if total_sum.payments_sum == enterprise.payments_sum

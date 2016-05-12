@@ -34,10 +34,12 @@ class Parser::ParserController < ApplicationController
     Preconditions.check_argument( text ) { is_not_nil }
 
     if text.include?( "\u0000" )
-      return "Não Informado"
+      text_format = "Não Informado"
     else
-      return text.upcase()
+      text_format = text.upcase()
     end
+
+    return text_format
 
   end
 
@@ -51,10 +53,12 @@ class Parser::ParserController < ApplicationController
     Preconditions.check_argument( text ) { is_not_nil }
 
     begin
-      return text.to_date()
+      text_date = text.to_date()
     rescue
-      return nil
+      text_date = nil
     end
+
+    return text_date
 
   end
 
