@@ -2,10 +2,11 @@
 File: welcome_controller_spec.rb
 Purpose: Contains a unit test from class SessionController.
 License: GPL v3.
-Pesquini Group 6
+Pesquini Group 6.
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
-require 'rails_helper'
+
+require "rails_helper"
 
 RSpec.configure do |config|
  
@@ -18,23 +19,23 @@ end
 
 RSpec.describe SessionsController, :type => :controller do
 
-  user = User.new(login: 'sanjaninha', password: 'sanjana123')
+  user = User.new( login: "sanjaninha", password: "sanjana123" )
   user.save
 
-  subject { post :create, :session => {:login => 'sanjana', :password => 'sanjana123'}}
+  subject { post :create, :session => {:login => "sanjana", :password => "sanjana123"} }
 
   describe   "GET" do
 
     describe '#create' do
 
       it "should log in user with correct login and password" do
-        post :create, :session => {:login =>"sanjaninha", :password => 'sanjana123'}
-        expect(response).to redirect_to(root_path)
+        post :create, :session => {:login => "sanjaninha", :password => "sanjana123"}
+        expect( response ).to redirect_to( root_path )
       end
 
       it "shoul show a message of error when the login or password is invalid" do 
-        post :create, :session => {:login =>"sanjaninha", :password => 'sanjana'}
-        flash[:error].should eq('Login ou senha invalidos!')
+        post :create, :session => {:login => "sanjaninha", :password => "sanjana"}
+        flash[:error].should eq( "Login ou senha invalidos!" )
       end
 
     end
@@ -44,10 +45,10 @@ RSpec.describe SessionsController, :type => :controller do
   describe "#destroy" do
    
     it "should sign out the user" do
-      post :create, :session => {:login =>"sanjaninha", :password => 'sanjana123'}
+      post :create, :session => {:login => "sanjaninha", :password => "sanjana123"}
       get :destroy
-      expect(session[:user_id]).to be(nil)
-      expect(response).to redirect_to(root_path)
+      expect( session[:user_id] ).to be( nil )
+      expect( response ).to redirect_to( root_path )
     end
   
   end

@@ -5,8 +5,9 @@ License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
-require 'spec_helper'
-require 'rails_helper'
+
+require "spec_helper"
+require "rails_helper"
 
 describe Sanction do
 
@@ -22,12 +23,12 @@ describe Sanction do
     it { should respond_to(:process_number) }
   it { should be_valid }
 
-  describe 'percentual_sanction' do
+  describe "percentual_sanction" do
 
     it " to do work" do
-      b = Sanction.percentual_sanction(10000)
+      b = Sanction.percentual_sanction( 10000 )
       c = b.to_i
-      expect(c).to eq(188)
+      expect( c ).to eq( 188 )
     end
 
   end
@@ -39,7 +40,7 @@ describe Sanction do
       it "should be_valid" do
         uniqueness_sanction = Sanction.new
         uniqueness_sanction.process_number = "123" 
-        expect(uniqueness_sanction).to be_valid
+        expect( uniqueness_sanction ).to be_valid
       end
     
     end
@@ -49,7 +50,7 @@ describe Sanction do
       it "should not be_valid" do
         duplicated_sanction = Sanction.new
         duplicated_sanction.process_number = "9090" 
-        expect(duplicated_sanction).not_to be_valid
+        expect( duplicated_sanction ).not_to be_valid
       end
     
     end
@@ -70,7 +71,7 @@ describe Sanction do
       end
 
       it "should not return other sanction" do
-        expect(@s.refresh!).not_to eq(@sanction);
+        expect( @s.refresh! ).not_to eq( @sanction );
       end  
     
     end

@@ -37,11 +37,12 @@ class Parser::ParserCeiController < Parser::ParserController
     Preconditions.check_argument( text ) { is_not_nil }
     
     if text.include?( "\u0000" )
-      return "Não Informado"
+      text_format = "Não Informado"
     else
-      return text.upcase()
+      text_format = text.upcase()
     end
 
+    return text_format
 
   end
 
@@ -54,10 +55,12 @@ class Parser::ParserCeiController < Parser::ParserController
 
     Preconditions.check_argument( text ) { is_not_nil }
     begin
-      return text.to_date()
+      text_date = text.to_date()
     rescue
-      return nil
+      text_date = nil
     end
+
+    return text_date
 
   end
   
@@ -69,19 +72,27 @@ class Parser::ParserCeiController < Parser::ParserController
 
     CSV.foreach( @@filename, :headers => true, :col_sep => "\t",
                  :encoding => 'ISO-8859-1' ) do |row|
+
+      Preconditions.check_not_nil( data )
       data = row.to_hash
       unless data["Tipo de Pessoa"].match( "J|j" ).nil?()
+
+        Preconditions.check_not_nil( sanction_type )
 
         # [String] Keeps the sanction type data.
         sanction_type = build_sanction_type( data ) 
 
+        Preconditions.check_not_nil( state )
+
         #[String] Keeps the state data.      
         state = build_state( data )
+
+        Preconditions.check_not_nil( enterprise )
 
         # [String] Keeps the enterprise data.                     
         enterprise = build_enterprise( data )
 
-        build_sanction( data, sanction_type, state, enterprise )
+        return build_sanction( data, sanction_type, state, enterprise )
       end
     end
 
@@ -95,6 +106,7 @@ class Parser::ParserCeiController < Parser::ParserController
   def build_state( row_data )
 
     Preconditions.check_argument( row_data ) { is_not_nil }
+    Preconditions.check_not_nil( new_state )
 
     # [String] Keeps the new state created.
     new_state = State.new()
@@ -115,6 +127,7 @@ class Parser::ParserCeiController < Parser::ParserController
   def build_sanction_type( row_data )
 
     Preconditions.check_argument( row_data ) { is_not_nil }
+    Preconditions.check_not_nil( new_sanction_type )
 
     # [String] Keeps the new sanction type created.
     new_sanction_type = SanctionType.new() 
@@ -135,6 +148,7 @@ class Parser::ParserCeiController < Parser::ParserController
   def build_enterprise( row_data )
 
     Preconditions.check_argument( row_data ) { is_not_nil }
+    Preconditions.check_not_nil( new_enterprise )
 
     # [String] Keeps the new enterprise created.
     new_enterprise = Enterprise.new()
@@ -160,7 +174,8 @@ class Parser::ParserCeiController < Parser::ParserController
   def build_sanction( row_data, sanction_type, state, enterprise )
     
     Preconditions.check_argument( row_data, sanction_type, state, enterprise ) { is_not_nil }
-
+    Preconditions.check_not_nil( new_sanction 
+      )
     # [String] Keeps information for sanction created.
     new_sanction = Sanction.new()
 

@@ -5,7 +5,8 @@ License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
-require 'rails_helper'
+
+require "rails_helper"
 
 RSpec.describe StatisticsController, :type => :controller do
 
@@ -19,56 +20,56 @@ RSpec.describe StatisticsController, :type => :controller do
 
   describe "GET" do
 
-    describe '#sanction_by_state_graph' do
+    describe "#sanction_by_state_graph" do
 
       it "should work" do
         get :sanction_by_state_graph
-        expect(response).to have_http_status(:success)
+        expect( response ).to have_http_status( :success )
       end
 
     end
 
-    describe '#index' do
+    describe "#index" do
 
       it "should work" do
         get :index
-        expect(response).to have_http_status(:success)
+        expect( response ).to have_http_status( :success )
       end
 
     end
 
-    describe '#most_sanctioned_ranking' do
+    describe "#most_sanctioned_ranking" do
 
       it "should work" do
         get :most_sanctioned_ranking
-        expect(response).to have_http_status(:success)
+        expect( response ).to have_http_status( :success )
       end
 
     end
 
-    describe '#enterprise_group_ranking' do
+    describe "#enterprise_group_ranking" do
 
       it "should work" do
         get :enterprise_group_ranking
-        expect(response).to have_http_status(:success)
+        expect( response ).to have_http_status( :success )
       end
 
     end
 
-    describe '#sanction_by_type_graph' do
+    describe "#sanction_by_type_graph" do
 
       it "should work" do
         get :sanction_by_type_graph
-        expect(response).to have_http_status(:success)
+        expect( response ).to have_http_status( :success )
       end
 
     end
 
-    describe '#most_paymented_ranking' do
+    describe "#most_paymented_ranking" do
    
       it "should work" do
         get :most_paymented_ranking
-        expect(response).to have_http_status(:success)
+        expect( response ).to have_http_status( :success )
       end
    
     end

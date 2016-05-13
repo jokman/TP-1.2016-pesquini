@@ -5,8 +5,9 @@ License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
-require 'spec_helper'
-require 'rails_helper'
+
+require "spec_helper"
+require "rails_helper"
 
 describe SanctionType do
 
@@ -29,7 +30,7 @@ describe SanctionType do
       it "should be_valid" do
         uniqueness_sanction_type = SanctionType.new
         uniqueness_sanction_type.description = "Inidoneidade - Lei de Licitações" 
-        expect(uniqueness_sanction_type).to be_valid
+        expect( uniqueness_sanction_type ).to be_valid
       end
    
     end
@@ -39,7 +40,7 @@ describe SanctionType do
         it "should not be_valid" do
         duplicated_sanction_type = SanctionType.new
         duplicated_sanction_type.description = "Proibição - Lei Eleitoral" 
-        expect(duplicated_sanction_type).not_to be_valid
+        expect( duplicated_sanction_type ).not_to be_valid
       end
    
     end
@@ -55,11 +56,11 @@ describe SanctionType do
       end
 
       it "should return SanctionType" do
-        expect(@s.refresh!).to eq(@s);
+        expect( @s.refresh! ).to eq( @s );
       end
 
       it "should not return other SanctionType" do
-        expect(@s.refresh!).not_to eq(@sanction_type);
+        expect( @s.refresh! ).not_to eq( @sanction_type );
       end  
    
     end

@@ -16,6 +16,9 @@ class EnterprisesController < ApplicationController
 
     if params[:q].nil?()
 
+      Preconditions.check_not_nil( @search )
+      Preconditions.check_not_nil( @enterprises )
+
       # [String] keeps enterprises search.
       @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
 
@@ -41,7 +44,7 @@ class EnterprisesController < ApplicationController
     @per_page = 10
 
     # [Integer] keeps page page number.
-    @page_num = show_page_num()
+    @page_number = show_page_number()
 
     # [String] keeps enterprise found by id.
     @enterprise = Enterprise.find( params[:id] )
@@ -62,23 +65,25 @@ class EnterprisesController < ApplicationController
     # [Integer] keeps enterprise position.
     @position = Enterprise.enterprise_position( @enterprise )
 
+    return @position
+
   end
 
   #
   # Method to show the page number.
   #
   # @return [ Integer ] page number.
-  def show_page_num()
+  def show_page_number()
 
     Preconditions.check( @page_num ) { is_not_nil and has_type( Integer ) 
-                                       and satisfies( ">= 0" ) { @page_num >= 0 } }
+                                       and satisfies( "> 0" ) { @page_num > 0 } }
     if params[:page].to_i > 0
-      @page_num = params[:page].to_i  - 1
+      @page_number = params[:page].to_i  - 1
     else
-      @page_num = 0
+      @page_number = 0
     end
 
-    return @page_num
+    return @page_number
 
   end
 
@@ -93,6 +98,7 @@ class EnterprisesController < ApplicationController
     payment_position = Enterprise.featured_payments
 
     payment_position.each_with_index do |total_sum, index|
+
       Preconditions.check( total_sum ) { is_not_nil and has_type( double ) }
       Preconditions.check( index ) { index >= 0 }
       if total_sum.payments_sum == enterprise.payments_sum

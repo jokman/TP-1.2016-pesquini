@@ -5,8 +5,9 @@ License: GPL v3.
 Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
-require 'spec_helper'
-require 'rails_helper'
+
+require "spec_helper"
+require "rails_helper"
 
 describe Payment do
 
@@ -39,7 +40,7 @@ describe Payment do
         it "should not be_valid" do
         duplicated_payment = Payment.new
         duplicated_payment.process_number = "1" 
-        expect(duplicated_payment).not_to be_valid
+        expect( duplicated_payment ).not_to be_valid
       end
     
     end
@@ -55,11 +56,11 @@ describe Payment do
       end
 
       it "should return Payment" do
-        expect(@p.refresh!).to eq(@p);
+        expect( @p.refresh! ).to eq( @p );
       end
 
       it "should not return other Payment" do
-        expect(@p.refresh!).not_to eq(@payment);
+        expect( @p.refresh! ).not_to eq( @payment );
       end  
    
     end
