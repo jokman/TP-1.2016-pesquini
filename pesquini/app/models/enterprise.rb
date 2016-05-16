@@ -17,9 +17,9 @@ class Enterprise < ActiveRecord::Base
   scope :featured_payments, -> ( number = nil ){number ? order( "payments_sum DESC" )
                                               .limit( number ) :order( "payments_sum DESC" ) }
 
-  # 
+  #
   # Method that informs the last penalty.
-  # 
+  #
   # @return [String] last searched sanction.
   def last_sanction()
 
@@ -29,6 +29,8 @@ class Enterprise < ActiveRecord::Base
     unless sanction.nil?()
       self.sanctions.each do |searched_sanction|
 
+        # This block will compare the initial and last dates of the sanctions,
+        # And making the last date, a new variable.
         Preconditions.check_not_nil( searched_sanction )
         if searched_sanction.initial_date > sanction.initial_date
           sanction = searched_sanction
@@ -42,9 +44,9 @@ class Enterprise < ActiveRecord::Base
 
   end
 
-  # 
+  #
   # Method that informs the last payment received.
-  # 
+  #
   # @return [String] last payment received.
   def last_payment()
 
@@ -54,7 +56,9 @@ class Enterprise < ActiveRecord::Base
     unless payment.nil?()
       self.payments.each do |searched_payment|
 
-         Preconditions.check_not_nil( searched_payment )
+        # This block will compare the researched payment amount on date,
+        # And making the last payment, a new variable.
+        Preconditions.check_not_nil( searched_payment )
         if searched_payment.sign_date > payment.sign_date
           payment = searched_payment
         else
@@ -67,10 +71,10 @@ class Enterprise < ActiveRecord::Base
 
   end
 
-  # 
+  #
   # Method that tells whether there were payments after a penalty.
-  # 
-  # @return 
+  #
+  # @return
   def payment_after_sanction?()
 
     # [String] Receives last sanction.
@@ -79,6 +83,8 @@ class Enterprise < ActiveRecord::Base
     # [String] Receives last payment received by an enterprise.
     payment = last_payment
 
+    # This block will compare if a enterprise received a payment after initial date of sanction,
+    # return payment value.
     if sanction && payment
       payment.sign_date < sanction.initial_date
     else
@@ -89,9 +95,9 @@ class Enterprise < ActiveRecord::Base
 
   end
 
-  # 
+  #
   # Method that refresh enterprises searched by CNPJ.
-  # 
+  #
   # @return [String] result of search.
   def refresh!()
 
@@ -104,10 +110,10 @@ class Enterprise < ActiveRecord::Base
 
   end
 
-  # 
+  #
   # Method that organizes the companies position amount of sanctions.
   # @param enterprise [String] keeps a enterprise.
-  # 
+  #
   # @return enterprise by its position.
   def self.enterprise_position( enterprise )
 
@@ -129,19 +135,19 @@ class Enterprise < ActiveRecord::Base
         # Nothing to do.
       end
     end
-    
+
   end
 
-  # 
+  #
   # Method shows that the most sanctioned companies to build a ranking.
-  # 
+  #
   # @return [String] a list with the enterprises with more sanctions.
   def self.most_sanctioned_ranking()
 
     assert enterprise_group.empty?, "The list must not be empty!"
     assert enterprise_group_count.empty?, "The list must not be empty!"
     assert enterprise_group_array.empty?, "Array must not be empty!"
-    
+
     enterprise_group = []
     enterprise_group_count = []
     @enterprise_group_array = []
@@ -163,7 +169,7 @@ class Enterprise < ActiveRecord::Base
 
     @enterprise_group_array << enterprise_group
     @enterprise_group_array << enterprise_group_count
-    
+
     return @enterprise_group_array
 
   end
