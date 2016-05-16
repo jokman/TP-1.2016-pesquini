@@ -1,5 +1,13 @@
+/*
+File: main.js
+Purpose: Provides javascript structures related to the main page.
+License: GPL v3.
+Pesquini Group 6
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+*/
 
   function main() {
+
 
   (function () {
      'use strict';
@@ -18,7 +26,7 @@
       else
       {
         $('.navbar-default').removeClass('on');
-      
+
 
         $(window).bind('scroll', function() {
             var navHeight = $(window).height() - 100;
@@ -32,14 +40,14 @@
         }
       });
 
-      $('body').scrollspy({ 
+      $('body').scrollspy({
           target: '.navbar-default',
           offset: 80
       })
 
     	$(document).ready(function() {
     	  $("#search").owlCarousel({
-    	 
+
     	      navigation : false, // Show next and prev buttons
     	      slideSpeed : 300,
     	      paginationSpeed : 400,
@@ -57,7 +65,7 @@
     	  });
 
     	  $("#clients").owlCarousel({
-    	 
+
     	      navigation : false, // Show next and prev buttons
     	      slideSpeed : 300,
     	      paginationSpeed : 400,
