@@ -1,4 +1,13 @@
  $(document ).ready(function ( ) {
+
+/*
+File: enterprises.js
+Purpose: Provides javascript structures related to the enterprises pages.
+License: GPL v3.
+Pesquini Group 6
+FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+*/
+
   var sanctions = document.getElementsByClassName("sanction-info");
   var payments = document.getElementsByClassName("payment-info");
 
