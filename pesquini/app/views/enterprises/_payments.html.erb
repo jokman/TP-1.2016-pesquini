@@ -1,3 +1,11 @@
+<%
+# File: _payments.html.erb
+# Purpouse: Page for show payments informations
+# License: GPL v3
+# Pesquini Group 6.
+# FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
+%>
+
         <div class =" lowercase-letter">
     <% @payments.each_with_index do |p, index| %>
           <h4><b><div class= "index_number"><%= @page_num*@per_page + index +1%></div></b></h4>
