@@ -176,12 +176,12 @@ class StatisticsController < ApplicationController
       Preconditions.check_not_nil( format )
 
       # Defines values to draw sanction by type chart.
-      f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
-      f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
-      f.options[:title][:text] = titulo
-      f.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
+      format.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
+      format.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
+      format.options[:title][:text] = titulo
+      format.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
                 :right => "50px", :top => "100px"} )
-      f.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
+      format.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
                       :dataLabels => {:enabled => true, :color => "black",
                       :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
       } )
@@ -238,15 +238,18 @@ class StatisticsController < ApplicationController
   #
   # List of total of sanctions by state in a especific state in a especific year.
   #
-  # @return list of total sanctions by its type.
+  # @return [String] list of total sanctions by its type.
   def total_by_type()
 
-    assert results.empty?, "The list must not be empty!"
-    assert results2.empty?, "The list must not be empty!"
+    assert total_sanction_state_result.empty?, "The list must not be empty!"
+    assert total_sanction_by_type_result.empty?, "The list must not be empty!"
 
+    # List with sanctions by state.
+    total_sanction_state_result = []
 
-    results = []
-    results2 = []
+    # List with santions by type.
+    total_sanction_by_type_result = []
+
     cont = 0
 
     # [String] receives state by its abbreviation.
@@ -270,13 +273,13 @@ class StatisticsController < ApplicationController
 
       # Concatenate sanction type in the result list, to have all sanctions by type.
       cont = cont + ( sanctions_by_type.count )
-      results2 << sanction_type_[1]
-      results2 << ( sanctions_by_type.count )
-      results << results2
-      results2 = []
+      total_sanction_by_type_result<< sanction_type_[1]
+      total_sanction_by_type_result << ( sanctions_by_type.count )
+      total_sanction_state_result << total_sanction_by_type_result
+      total_sanction_by_type_result = []
     end
 
-    results2 << "Não Informado"
+    total_sanction_by_type_result << "Não Informado"
       Preconditions.check_not_nil( total )
       if ( params[:state_] && params[:state_] != "Todos" )
         total = Sanction.where(state_id: state[:id] ).count
@@ -284,11 +287,12 @@ class StatisticsController < ApplicationController
         total = Sanction.count
       end
 
-    results2 << ( total - cont )
-    results << results2
-    results = results.sort_by{ |i| i[0] }
+    # Sort sanction state list.
+    total_sanction_by_type_result << ( total - cont )
+    total_sanction_state_result << total_sanction_by_type_result
+    total_sanction_state_result = total_sanction_state_result.sort_by{ |i| i[0] }
 
-    return results
+    return total_sanction_state_result
   end
 
 end
