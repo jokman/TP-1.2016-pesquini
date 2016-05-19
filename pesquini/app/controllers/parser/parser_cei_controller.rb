@@ -84,7 +84,7 @@ class Parser::ParserCeiController < Parser::ParserController
 
         Preconditions.check_not_nil( state )
 
-        #[String] Keeps the state data.      
+        # [String] Keeps the state data.      
         state = build_state( data )
 
         Preconditions.check_not_nil( enterprise )
@@ -92,7 +92,9 @@ class Parser::ParserCeiController < Parser::ParserController
         # [String] Keeps the enterprise data.                     
         enterprise = build_enterprise( data )
 
-        return build_sanction( data, sanction_type, state, enterprise )
+        build_sanction( data, sanction_type, state, enterprise )
+
+        return
       end
     end
 
@@ -133,7 +135,6 @@ class Parser::ParserCeiController < Parser::ParserController
     new_sanction_type = SanctionType.new() 
        
     new_sanction_type.description = check_nil_ascii( row_data["Tipo Sanção"] )
-
     check_and_save( new_sanction_type )
 
     return new_sanction_type
@@ -154,9 +155,7 @@ class Parser::ParserCeiController < Parser::ParserController
     new_enterprise = Enterprise.new()
 
     new_enterprise.cnpj = row_data["CPF ou CNPJ do Sancionado"]
-    # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
     new_enterprise.corporate_name = check_nil_ascii( row_data["Razão Social - Cadastro Receita"] )
-
     check_and_save( new_enterprise )
 
     return new_enterprise
@@ -174,11 +173,12 @@ class Parser::ParserCeiController < Parser::ParserController
   def build_sanction( row_data, sanction_type, state, enterprise )
     
     Preconditions.check_argument( row_data, sanction_type, state, enterprise ) { is_not_nil }
-    Preconditions.check_not_nil( new_sanction 
-      )
+    Preconditions.check_not_nil( new_sanction )
+
     # [String] Keeps information for sanction created.
     new_sanction = Sanction.new()
 
+    # Takes sanction values to build new sanction.
     new_sanction.initial_date = check_date( row_data["Data Início Sanção"] )
     new_sanction.final_date = check_date( row_data["Data Final Sanção"] )
     new_sanction.process_number = check_nil_ascii( row_data["Número do processo"] )

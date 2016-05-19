@@ -101,6 +101,7 @@ class EnterprisesController < ApplicationController
 
       Preconditions.check( total_sum ) { is_not_nil and has_type( double ) }
       Preconditions.check( index ) { index >= 0 }
+      
       if total_sum.payments_sum == enterprise.payments_sum
         return index + 1
       else

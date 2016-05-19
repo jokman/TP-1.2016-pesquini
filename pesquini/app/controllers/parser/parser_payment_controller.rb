@@ -72,6 +72,7 @@ class Parser::ParserPaymentController < Parser::ParserController
           # [String] keeps payment created.
           payment = Payment.new()
           
+          # Puts the payment values in the especified row to create new payment object.
           payment.identifier = check_nil_ascii( row[0] )
           payment.process_number = check_nil_ascii( row[10] )
           payment.initial_value = check_value( row[16] )

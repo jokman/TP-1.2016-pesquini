@@ -127,6 +127,8 @@ class StatisticsController < ApplicationController
       else
         # Nothing to do.
       end
+
+      # Defines values to draw sanction by state chart.
       parameters.xAxis( :categories => @@states_list )
       parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
       parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
@@ -170,8 +172,10 @@ class StatisticsController < ApplicationController
   # @return type of sanctions information chart.
   def sanction_by_type_graph_information()
 
-    LazyHighCharts::HighChart.new( "pie" ) do |f|
-      Preconditions.check_not_nil( f )
+    LazyHighCharts::HighChart.new( "pie" ) do |format|
+      Preconditions.check_not_nil( format )
+
+      # Defines values to draw sanction by type chart.
       f.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
       f.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
       f.options[:title][:text] = titulo
@@ -264,6 +268,7 @@ class StatisticsController < ApplicationController
         # Nothing to do.
       end
 
+      # Concatenate sanction type in the result list, to have all sanctions by type.
       cont = cont + ( sanctions_by_type.count )
       results2 << sanction_type_[1]
       results2 << ( sanctions_by_type.count )
