@@ -61,10 +61,10 @@ class StatisticsController < ApplicationController
 
   end
 
-  #
-  # Define largest sanctioned groups.
-  #
-  # @return enterprises by sanctions.
+=begin  
+  Define largest sanctioned groups.
+  @return enterprises by sanctions.
+=end
   def enterprise_group_ranking()
 
     @quantidade = params[:sanctions_count]
@@ -75,10 +75,10 @@ class StatisticsController < ApplicationController
 
   end
 
-  #
-  # Define largest payments groups.
-  #
-  # @return enterprises by payments.
+=begin
+  Define largest payments groups.
+  @return enterprises by payments.
+=end
   def payment_group_ranking()
 
     @quantidade = params[:payments_count]
@@ -172,13 +172,15 @@ class StatisticsController < ApplicationController
   # @return type of sanctions information chart.
   def sanction_by_type_graph_information()
 
+
+    title = "Gráfico Sanções por Tipo"
     LazyHighCharts::HighChart.new( "pie" ) do |format|
       Preconditions.check_not_nil( format )
 
       # Defines values to draw sanction by type chart.
       format.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
       format.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
-      format.options[:title][:text] = titulo
+      format.options[:title][:text] = title
       format.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
                 :right => "50px", :top => "100px"} )
       format.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
@@ -235,8 +237,8 @@ class StatisticsController < ApplicationController
   # @return [String] list of total sanctions by its type.
   def total_by_type()
 
-    assert total_sanction_state_result.empty?, "The list must not be empty!"
-    assert total_sanction_by_type_result.empty?, "The list must not be empty!"
+    
+   
 
     # List with sanctions by state.
     total_sanction_state_result = []
@@ -269,12 +271,11 @@ class StatisticsController < ApplicationController
       cont = cont + ( sanctions_by_type.count )
       total_sanction_by_type_result<< sanction_type_[1]
       total_sanction_by_type_result << ( sanctions_by_type.count )
-      total_sanction_state_result << total_sanction_by_type_result
+      total_sanction_state_result << total_sanction_by_type_result      
       total_sanction_by_type_result = []
     end
 
     total_sanction_by_type_result << "Não Informado"
-      Preconditions.check_not_nil( total )
       if ( params[:state_] && params[:state_] != "Todos" )
         total = Sanction.where(state_id: state[:id] ).count
       else
