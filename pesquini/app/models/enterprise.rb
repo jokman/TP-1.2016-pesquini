@@ -144,24 +144,22 @@ class Enterprise < ActiveRecord::Base
   # @return [String] a list with the enterprises with more sanctions.
   def self.most_sanctioned_ranking()
 
-    assert enterprise_group.empty?, "The list must not be empty!"
-    assert enterprise_group_count.empty?, "The list must not be empty!"
-    assert enterprise_group_array.empty?, "Array must not be empty!"
+    
 
     enterprise_group = []
     enterprise_group_count = []
     @enterprise_group_array = []
 
-    Preconditions.check_not_nil( sorted_sanctions )
-
     # [String] sort sanctions counted.
     sorted_sanctions = Enterprise.all.sort_by{ |qnt_sanctions_ranking| qnt_sanctions_ranking.sanctions_count }
 
-    Preconditions.check_not_nil( sorted_group_sanctions )
-
+    Preconditions.check_not_nil( sorted_sanctions )
+    
     # [String] reverse sort.
     sorted_group_sanctions = sorted_sanctions.uniq.group_by( &:sanctions_count ).to_a.reverse
 
+    Preconditions.check_not_nil( sorted_group_sanctions )
+    
     sorted_group_sanctions.each do |qnt_group_sanctions|
       enterprise_group << qnt_group_sanctions[0]
       enterprise_group_count << qnt_group_sanctions[1].count

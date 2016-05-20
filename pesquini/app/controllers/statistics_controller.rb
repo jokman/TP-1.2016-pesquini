@@ -27,8 +27,6 @@ class StatisticsController < ApplicationController
   # @return array of groups with the same amount of sanctions.
   def most_sanctioned_ranking()
 
-    assert enterprise_group_array.empty?, "Array must not be empty!"
-
     # [String] keeps ranking of enterprises with most sanctions.
     enterprise_group_array = Enterprise.most_sanctioned_ranking()
 
@@ -119,9 +117,11 @@ class StatisticsController < ApplicationController
   # @return informations chart.
   def sanction_by_state_graph_information()
 
-    LazyHighCharts::HighChart.new( "graph" ) do |parameters|
+          
+      title = "Gráfico de Sanções por Estado"
+      @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
       Preconditions.check_not_nil( parameters )
-      parameters.title( :text => titulo )
+      parameters.title( :text => title )
       if( params[:year_].to_i() != 0 )
         parameters.title(:text => params[:year_].to_i() )
       else
@@ -195,24 +195,18 @@ class StatisticsController < ApplicationController
   # @return list of sacntions in a state on a year.
   def total_by_state()
 
-    assert state_results.empty?, "The list must not be empty!"
     
     # [String] array of string that keep the results of sanctions by state.
     sanction_by_state_results = []
-
+    @years = @@sanction_years
     @@states_list.each() do |sanction_state|
 
-      Preconditions.check_not_nil( sanction_state )
-      Preconditions.check_not_nil( state )
-      Preconditions.check_not_nil( sanctions_by_state )
 
       # [String] keeps state found by its abbreviation.
       state = State.find_by_abbreviation( "#{sanction_state}" )
 
       # [String] keeps sanctions in a state, by state id. 
       sanctions_by_state = Sanction.where( state_id: state[:id] )
-
-      assert selected_year.empty, "List can't be empty."
 
       # [Integer] array with year that has sanctions.
       selected_year = []
