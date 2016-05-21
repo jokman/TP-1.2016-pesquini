@@ -61,10 +61,10 @@ class StatisticsController < ApplicationController
 
   end
 
-=begin
-  Define largest sanctioned groups.
-  @return enterprises by sanctions.
-=end
+  # 
+  # Define largest sanctioned groups.
+  # 
+  # @return [String] enterprises by sanctions.
   def enterprise_group_ranking()
 
     @quantidade = params[:sanctions_count]
@@ -75,10 +75,10 @@ class StatisticsController < ApplicationController
 
   end
 
-=begin
-  Define largest payments groups.
-  @return enterprises by payments.
-=end
+  # 
+  # Define largest payments groups.
+  # 
+  # @return [String] enterprises by payments.
   def payment_group_ranking()
 
     @quantidade = params[:payments_count]
@@ -118,26 +118,26 @@ class StatisticsController < ApplicationController
   def sanction_by_state_graph_information()
 
 
-      title = "Gráfico de Sanções por Estado"
-      @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
-      Preconditions.check_not_nil( parameters )
-      parameters.title( :text => title )
-      if( params[:year_].to_i() != 0 )
-        parameters.title(:text => params[:year_].to_i() )
-      else
-        # Nothing to do.
-      end
-
-      # Defines values to draw sanction by state chart.
-      parameters.xAxis( :categories => @@states_list )
-      parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
-      parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
-      parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
-                :x => -50, :layout => "vertical", )
-      parameters.chart( {:defaultSeriesType => "column"} )
-
-      return parameters
+    title = "Gráfico de Sanções por Estado"
+    @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
+    Preconditions.check_not_nil( parameters )
+    parameters.title( :text => title )
+    if( params[:year_].to_i() != 0 )
+      parameters.title(:text => params[:year_].to_i() )
+    else
+       # Nothing to do.
     end
+
+    # Defines values to draw sanction by state chart.
+    parameters.xAxis( :categories => @@states_list )
+    parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
+    parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
+    parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
+              :x => -50, :layout => "vertical", )
+    parameters.chart( {:defaultSeriesType => "column"} )
+
+    return parameters
+  end
 
   end
 
