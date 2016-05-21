@@ -61,7 +61,7 @@ class StatisticsController < ApplicationController
 
   end
 
-=begin  
+=begin
   Define largest sanctioned groups.
   @return enterprises by sanctions.
 =end
@@ -117,7 +117,7 @@ class StatisticsController < ApplicationController
   # @return informations chart.
   def sanction_by_state_graph_information()
 
-          
+
       title = "Gráfico de Sanções por Estado"
       @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
       Preconditions.check_not_nil( parameters )
@@ -197,7 +197,7 @@ class StatisticsController < ApplicationController
   # @return list of sacntions in a state on a year.
   def total_by_state()
 
-    
+
     # [String] array of string that keep the results of sanctions by state.
     sanction_by_state_results = []
     @years = @@sanction_years
@@ -207,7 +207,7 @@ class StatisticsController < ApplicationController
       # [String] keeps state found by its abbreviation.
       state = State.find_by_abbreviation( "#{sanction_state}" )
 
-      # [String] keeps sanctions in a state, by state id. 
+      # [String] keeps sanctions in a state, by state id.
       sanctions_by_state = Sanction.where( state_id: state[:id] )
 
       # [Integer] array with year that has sanctions.
@@ -237,8 +237,8 @@ class StatisticsController < ApplicationController
   # @return [String] list of total sanctions by its type.
   def total_by_type()
 
-    
-   
+
+
 
     # List with sanctions by state.
     total_sanction_state_result = []
@@ -246,7 +246,7 @@ class StatisticsController < ApplicationController
     # List with santions by type.
     total_sanction_by_type_result = []
 
-    cont = 0
+    iterator = 0
 
     # [String] receives state by its abbreviation.
     state = State.find_by_abbreviation( params[:state_] )
@@ -257,7 +257,7 @@ class StatisticsController < ApplicationController
 
       # [String] keeps sanction found by its description.
       sanction = SanctionType.find_by_description( sanction_type_[0] )
-      
+
       # [String] keeps sanction by its type.
       sanctions_by_type = Sanction.where( sanction_type:  sanction )
 
@@ -268,10 +268,10 @@ class StatisticsController < ApplicationController
       end
 
       # Concatenate sanction type in the result list, to have all sanctions by type.
-      cont = cont + ( sanctions_by_type.count )
+      iterator = iterator + ( sanctions_by_type.count )
       total_sanction_by_type_result<< sanction_type_[1]
       total_sanction_by_type_result << ( sanctions_by_type.count )
-      total_sanction_state_result << total_sanction_by_type_result      
+      total_sanction_state_result << total_sanction_by_type_result
       total_sanction_by_type_result = []
     end
 
@@ -283,7 +283,7 @@ class StatisticsController < ApplicationController
       end
 
     # Sort sanction state list.
-    total_sanction_by_type_result << ( total - cont )
+    total_sanction_by_type_result << ( total - iterator )
     total_sanction_state_result << total_sanction_by_type_result
     total_sanction_state_result = total_sanction_state_result.sort_by{ |i| i[0] }
 
