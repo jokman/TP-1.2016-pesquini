@@ -8,6 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class Sanction < ActiveRecord::Base
 
+  # Associate sanction with enterprise, sanction type and state.
   belongs_to :enterprise, counter_cache: true
   belongs_to :sanction_type
   belongs_to :state

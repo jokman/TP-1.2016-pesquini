@@ -67,27 +67,9 @@ class Parser::ParserPaymentController < Parser::ParserController
         # [String] Parser the CSV.
         csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
 
-        csv.each_with_index() do |row, i|
+        # Calls method that creates new payment. 
+        csv()
 
-          assert row.empty?, "row must not be empty!"
-
-          # [String] keeps payment created.
-          payment = Payment.new()
-          
-          # Puts the payment values in the especified row to create new payment object.
-          payment.identifier = check_nil_ascii( row[0] )
-          payment.process_number = check_nil_ascii( row[10] )
-          payment.initial_value = check_value( row[16] )
-          payment.sign_date = check_date( row[12] )
-          payment.start_date = check_date( row[14] )
-          payment.end_date = check_date( row[15] )
-          payment.enterprise = enterprise
-          enterprise.payments_sum = enterprise.payments_sum + payment.initial_value
-          check_and_save( enterprise )
-          check_and_save( payment )
-
-          return payment
-        end
       rescue
         constante = constante + 1
       end
@@ -96,6 +78,35 @@ class Parser::ParserPaymentController < Parser::ParserController
     puts "=" * 50
     puts "Quantidade de empresas sem pagamentos: ", constante
 
+  end
+
+  # 
+  # Creates new payment object
+  # 
+  # @return [String] created payment.
+  def csv()
+
+    csv.each_with_index() do |row, i|
+
+      assert row.empty?, "row must not be empty!"
+
+      # [String] keeps payment created.
+      payment = Payment.new()
+          
+      # Puts the payment values in the especified row to create new payment object.
+      payment.identifier = check_nil_ascii( row[0] )
+      payment.process_number = check_nil_ascii( row[10] )
+      payment.initial_value = check_value( row[16] )
+      payment.sign_date = check_date( row[12] )
+      payment.start_date = check_date( row[14] )
+      payment.end_date = check_date( row[15] )
+      payment.enterprise = enterprise
+      enterprise.payments_sum = enterprise.payments_sum + payment.initial_value
+      check_and_save( enterprise )
+      check_and_save( payment )
+
+      return payment
+    end
   end
 
   # 

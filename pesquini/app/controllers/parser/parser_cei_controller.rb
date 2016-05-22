@@ -191,7 +191,6 @@ class Parser::ParserCeiController < Parser::ParserController
     return new_sanction
 
   end
-
   
   # 
   # Method that check and save the data.
