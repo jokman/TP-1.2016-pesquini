@@ -34,10 +34,12 @@ class Parser::ParserPaymentController < Parser::ParserController
   def check_value( text )
 
     begin
-      return text.gsub( ",", " " ).to_f()
+      text = text.gsub( ",", " " ).to_f()
     rescue
-      return nil
+      text = "no string."
     end
+
+    return text
 
   end
 

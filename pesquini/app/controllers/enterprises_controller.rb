@@ -16,7 +16,6 @@ class EnterprisesController < ApplicationController
 
     if params[:q].nil?()
 
-
       @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
       @enterprises = Enterprise.paginate( :page => params[:page], :per_page => 10 )
     else
@@ -37,11 +36,13 @@ class EnterprisesController < ApplicationController
 
     # [Integer] keeps number of enterprises search result per page.
     @per_page = 10
+
+    # Build enterprises values to show per page.
     @page_number = show_page_number()
     @enterprise = Enterprise.find( params[:id] )
     @collection = Sanction.where( enterprise_id: @enterprise.id )
-    @payments = Payment.where( enterprise_id: @enterprise.id ).
-                               paginate( :page => params[:page], :per_page => @per_page )
+    @payments = Payment.where( enterprise_id: @enterprise.id )
+    @payments_per_page = @payments.paginate( :page => params[:page], :per_page => @per_page )
     @sanctions = @collection.paginate( :page => params[:page], :per_page => @per_page )
     @payment_position = enterprise_payment_position( @enterprise )
     @position = Enterprise.enterprise_position( @enterprise )
@@ -54,9 +55,7 @@ class EnterprisesController < ApplicationController
   # Method to show the page number.
   #
   # @return [ Integer ] page number.
-  def show_page_number()
-
-    
+  def show_page_number()  
 
     if params[:page].to_i > 0
       @page_number = params[:page].to_i  - 1

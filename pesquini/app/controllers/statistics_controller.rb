@@ -181,8 +181,9 @@ class StatisticsController < ApplicationController
       format.chart({:defaultSeriesType => "pie" ,:margin => [50, 10, 10, 10]} )
       format.series( {:type => "pie", :name => "Sanções Encontradas", :data => total_by_type} )
       format.options[:title][:text] = title
-      format.legend( :layout => "vertical", :style => {:left => "auto", :bottom => 'auto',
-                :right => "50px", :top => "100px"} )
+      format.legend( :layout => "vertical" )
+      format.legend_style( :style => {:left => "auto", :bottom => 'auto',
+                           :right => "50px",:top => "100px"})
       format.plot_options( :pie => {:allowPointSelect => true, :cursor => "pointer",
                       :dataLabels => {:enabled => true, :color => "black",
                       :style => {:font => "12px Trebuchet MS, Verdana, sans-serif"}}
