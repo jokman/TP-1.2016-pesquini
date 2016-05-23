@@ -61,33 +61,35 @@ class StatisticsController < ApplicationController
 
   end
 
-  # 
+  #
   # Define largest sanctioned groups.
-  # 
-  # @return [String] enterprises by sanctions.
+  #
+  # @return enterprises by sanctions.
   def enterprise_group_ranking()
 
     @quantidade = params[:sanctions_count]
-    @enterprises = Enterprise.where( sanctions_count: @quantidade )
-                                     .paginate( :page => params[:page], :per_page => 10 )
+    @enterprises_group = Enterprise.where( sanctions_count: @quantidade )
+    @enterprises_group_paginate = @enterprises_group.paginate( :page => params[:page], :per_page => 10)
 
-    return @enterprises
+
+    return @enterprises_group_paginate
 
   end
 
-  # 
+  #
   # Define largest payments groups.
-  # 
-  # @return [String] enterprises by payments.
+  #
+  # @return enterprises by payments.
   def payment_group_ranking()
 
     @quantidade = params[:payments_count]
-    @enterprises = Enterprise.where( payments_count: @quantidade )
-                                     .paginate( :page => params[:page], :per_page => 10)
+    @enterprises_payment = Enterprise.where( payments_count: @quantidade )                                     
+    @enterprises_payment_paginate = @enterprises_payment.paginate( :page => params[:page], :per_page => 10)
 
-    return @enterprises
+    return @enterprises_payment_paginate
 
   end
+
 
   #
   # Plotting by state sanctions chart.
