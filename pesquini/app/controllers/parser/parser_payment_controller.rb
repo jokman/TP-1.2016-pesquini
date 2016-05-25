@@ -10,6 +10,7 @@ class Parser::ParserPaymentController < Parser::ParserController
 
   require 'csv'
   require 'open-uri'
+  include CheckAndSave
 
   # Authorize filter only with that caracteristics checked.
   before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
@@ -107,25 +108,6 @@ class Parser::ParserPaymentController < Parser::ParserController
 
       return payment
     end
-  end
-
-  # 
-  # Method that check and save the data.
-  # @param check [String] Use to check content.
-  # 
-  # @return [String] Save the content after it has been checked.
-  def check_and_save( check )
-
-    Preconditions.check_not_nil( check )
-
-    begin
-      check.save!
-      check
-    rescue ActiveRecord::RecordInvalid
-      check = check.refresh!
-      check
-    end
-
   end
   
 end
