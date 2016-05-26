@@ -52,12 +52,12 @@ class StatisticsController < ApplicationController
     Preconditions.check_not_nil( :sanction_years )
     if params[:sanction_years]
       @all = true
-      @enterprises = Enterprise.featured_payments.paginate( :page => params[:page], :per_page => 20 )
+      @enterprises_featured_payments = Enterprise.featured_payments.paginate( :page => params[:page], :per_page => 20 )
     else
-      @enterprises = Enterprise.featured_payments( 10 )
+      @enterprises_featured_payments = Enterprise.featured_payments( 10 )
     end
 
-    return @enterprises
+    return @enterprises_featured_payments
 
   end
 
