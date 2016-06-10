@@ -19,28 +19,5 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
   rescue_from ActionController::RoutingError, :with => :render_not_found
 
-  # 
-  # Send a message in case has a routing problem.
-  # 
-  # @return exception.
-  def raise_not_found!()
-
-    raise ActionController::RoutingError.
-          new( "No route matches #{params[:unmatched_route]}" )
-
-  end
-
-  # 
-  # Gives an error 404.
-  # 
-  # @return error 404 in a html page.
-  def render_not_found()
-
-    respond_to do |error404|
-      Preconditions.check_not_nil( error404 )
-      error404.html{ render :template => "errors/404", :status => 404 }
-    end
-
-  end
 
 end
