@@ -6,16 +6,16 @@ Pesquini Group 6.
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 -->
 
+<!-- Load the javascript that will be used in this page -->
+<% content_for :header do -%>
+ <%= javascript_include_tag 'serch.js' %>
+<% end %>
+
 <div id="enterprises_index">
-
-
   <div class="search_form">
       <div class="container">
-
         <div class="service">
-
         </div>
-
         <div class="search_form_enterprises">
           <h1>Ferramenta de busca</h1>
           <hr>
@@ -24,25 +24,16 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
             <%= f.search_field :corporate_name_cont%>
             <%= f.submit %>
           <% end %>
- <!--         <div class="additional_search">
-            <i class="fa fa-angle-double-down fa_down"></i>
-            <h4><strong>Mais opções de busca</strong></h4>
-          </div>-->
         </div>
-
     </div>
   </div>
-
   <span class="division"> <hr> </span>
-
   <div class="container">
-
     <% if @enterprises.blank? %>
       <div class="entreprises_title">
         <h3>Não existem sanções contra a empresa procurada.</h3>
         <hr>
       </div>
-
     <% else %>
       <div class="entreprises_title">
         <h1> Lista das empresas encontradas</h1>
@@ -58,5 +49,4 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
       <%= will_paginate @enterprises, renderer: BootstrapPagination::Rails %>
     </div>
   </div>
-
 </div>
