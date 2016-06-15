@@ -6,7 +6,7 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 */
 
-  var sanctions_btn = document.getElementById("sanction-info-btn");
+var sanctions_btn = document.getElementById("sanction-info-btn");
 
 if ($(sanctions_btn).hasClass("active"))
 {

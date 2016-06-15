@@ -6,7 +6,11 @@
 # FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 -->
 
-<%= javascript_include_tag("pagination.js") %>
+<!-- Load the javascript that will be used in this page -->
+<% content_for :header do -%>
+ <%= javascript_include_tag 'pagination.js' %>
+ <%= javascript_include_tag 'enterprises.js' %>
+<% end %>
 
 <div id="enterprises_show">
   <div class="container">
@@ -23,7 +27,7 @@
 
     <div id ="enterprises_selection">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active" id="sanction-info-btn"><a href="#">Sanções</a></li>
+          <li role="presentation" class="active" id="sanction-info-btn"><a href="#">Sanções</a></li>
         <li role="presentation" id="payment-info-btn"><a href="#">Pagamentos</a></li>
       </ul>
     </div>
