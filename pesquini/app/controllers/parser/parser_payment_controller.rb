@@ -10,6 +10,7 @@ class Parser::ParserPaymentController < Parser::ParserController
 
   require 'csv'
   require 'open-uri'
+  include CheckAndSave
 
   # Authorize filter only with that caracteristics checked.
   before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
@@ -34,10 +35,12 @@ class Parser::ParserPaymentController < Parser::ParserController
   def check_value( text )
 
     begin
-      return text.gsub( ",", " " ).to_f()
+      text = text.gsub( ",", " " ).to_f()
     rescue
-      return nil
+      text = "no string."
     end
+
+    return text
 
   end
 
@@ -65,26 +68,9 @@ class Parser::ParserPaymentController < Parser::ParserController
         # [String] Parser the CSV.
         csv = CSV.parse( data, :headers => true, :encoding => 'ISO-8859-1' )
 
-        csv.each_with_index() do |row, i|
+        # Calls method that creates new payment. 
+        csv()
 
-          assert row.empty?, "row must not be empty!"
-
-          # [String] keeps payment created.
-          payment = Payment.new()
-          
-          payment.identifier = check_nil_ascii( row[0] )
-          payment.process_number = check_nil_ascii( row[10] )
-          payment.initial_value = check_value( row[16] )
-          payment.sign_date = check_date( row[12] )
-          payment.start_date = check_date( row[14] )
-          payment.end_date = check_date( row[15] )
-          payment.enterprise = enterprise
-          enterprise.payments_sum = enterprise.payments_sum + payment.initial_value
-          check_and_save( enterprise )
-          check_and_save( payment )
-
-          return payment
-        end
       rescue
         constante = constante + 1
       end
@@ -96,22 +82,32 @@ class Parser::ParserPaymentController < Parser::ParserController
   end
 
   # 
-  # Method that check and save the data.
-  # @param check [String] Use to check content.
+  # Creates new payment object
   # 
-  # @return [String] Save the content after it has been checked.
-  def check_and_save( check )
+  # @return [String] created payment.
+  def csv()
 
-    Preconditions.check_not_nil( check )
+    csv.each_with_index() do |row, i|
 
-    begin
-      check.save!
-      check
-    rescue ActiveRecord::RecordInvalid
-      check = check.refresh!
-      check
+      assert row.empty?, "row must not be empty!"
+
+      # [String] keeps payment created.
+      payment = Payment.new()
+          
+      # Puts the payment values in the especified row to create new payment object.
+      payment.identifier = check_nil_ascii( row[0] )
+      payment.process_number = check_nil_ascii( row[10] )
+      payment.initial_value = check_value( row[16] )
+      payment.sign_date = check_date( row[12] )
+      payment.start_date = check_date( row[14] )
+      payment.end_date = check_date( row[15] )
+      payment.enterprise = enterprise
+      enterprise.payments_sum = enterprise.payments_sum + payment.initial_value
+      check_and_save( enterprise )
+      check_and_save( payment )
+
+      return payment
     end
-
   end
   
 end

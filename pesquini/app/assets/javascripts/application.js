@@ -10,17 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery-3.0.0.js
 //= require jquery
-//= require jquery_ujs
-//= require bootstrap-sprockets
-//= require owl.carousel
-// require turbolinks
-//= require highcharts
-//= require highcharts/highcharts-more
-//= require highcharts/modules/exporting
-//require_tree .
-//= require dinamic_selection
-//= require enterprises
-//= require main
-//= require search
-//= require smooth_scrolling
+//= require rails.js
+//= require bootstrap.js
+//= require owl.carousel.js

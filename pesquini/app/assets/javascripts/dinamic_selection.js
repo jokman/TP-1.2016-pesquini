@@ -1,5 +1,3 @@
- $(document ).ready(function ( ) {
-
 /*
 File: dinamic_selection.js
 Purpose: Script for dynamic selection in the application.
@@ -8,10 +6,12 @@ Pesquini Group 6
 FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 */
 
-    var select_b = document.getElementById('select_button');
-    if (select_b)
-    {
-      select_b.style.display = "none";
+//= require dinamic_selection.js
+ $(document ).ready(function () {
+    var select_button = document.getElementById('select_button');
+
+    if (select_button) {
+      select_button.style.display = "none";
     }
 
     $('#select_tag').change(function() {

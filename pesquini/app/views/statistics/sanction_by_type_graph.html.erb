@@ -1,7 +1,11 @@
+<!-- Load the javascript that will be used in this page -->
+<% content_for :header do -%>
+ <%= javascript_include_tag 'highcharts-custom' %>
+ <%= javascript_include_tag 'dinamic_selection' %>
+<% end %>
+
 <div class="container">
-
   <%= render 'back_button' %>
-
   <div class="search_sanction_type">
     <span class="same_line">
       Filtrar sanções por Estado:
@@ -12,7 +16,6 @@
     </span>
   </div>
 </div>
-
 <div class="graph_sanction_type">
   <%=  render  "sanction_by_type"%>
 </div>

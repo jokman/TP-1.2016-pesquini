@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+ Rails.application.routes.draw do
   root 'welcome#index'
   get '/parser/cei' => 'parser/parser_cei#import'
   get '/parser/payment' => 'parser/parser_payment#import'
@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
   match 'statistics', controller: 'statistics', action: 'total_by_state', via: 'get'
-  get '*unmatched_route', :to => 'application#raise_not_found!'
 
 
 
