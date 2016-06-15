@@ -1,20 +1,20 @@
+ <!-- Load the javascript that will be used in this page -->
+<% content_for :header do -%>
+  <%= javascript_include_tag 'highcharts-custom' %>
+  <%= javascript_include_tag 'dinamic_selection' %>
+<% end %>
 
 <div class="container">
-
   <%= render 'back_button' %>
+  <span class="same_line">
+         Filtrar sanções por Ano:
+    <%= form_tag("/statistics/sanction_by_state_graph", method: "get", remote: true) do %>
+      <%= select_tag 'year_', options_for_select(@years, :selected => params[:year_]), id: "select_tag"%>
+      <%= submit_tag "Confirmar", name: nil, id: "select_button"%>
+    <% end %>
 
-<span class="same_line">
-     Filtrar sanções por Ano:
-<%= form_tag("/statistics/sanction_by_state_graph", method: "get", remote: true) do %>
-  <%= select_tag 'year_', options_for_select(@years, :selected => params[:year_]), id: "select_tag"%>
-  <%= submit_tag "Confirmar", name: nil, id: "select_button"%>
-
-<% end %>
-</span>
-
-
-<div class="graph_sanction_state">
-  <%=  render  "sanction_by_state"%>
-</div>
-
+  </span>
+  <div class="graph_sanction_state">
+    <%=  render  "sanction_by_state"%>
+  </div>
 </div>
