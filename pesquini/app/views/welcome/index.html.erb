@@ -1,23 +1,21 @@
- <!-- Load the javascript that will be used in this page -->
-
+<!-- Load the javascript that will be used in this page -->
 <% content_for :header do -%>
   <%= javascript_include_tag 'smooth_scrolling' %>
   <%= javascript_include_tag 'nav_bar_transparency' %>
 <% end %>
 
 <!-- Home Page-->
-
 <div id="tf-home" class="text-center">
   <div class="overlay">
     <div class="content">
       <%= image_tag 'pesquini_small2.png' %>
     </div>
     <div class="content_search">
-      <%= search_form_for @search do |f| %>
+      <%= search_form_for @search do |search_db| %>
       <div class="input-group">
-        <%= f.text_field :corporate_name_cont, class: "form-control input-lg id", placeholder: "Digite nome ou CNPJ da empresa", placeholder: "Digite nome ou CNPJ da empresa"%>
+        <%= search_db.text_field :corporate_name_cont, class: "form-control input-lg id", placeholder: "Digite nome ou CNPJ da empresa"%>
         <span class="input-group-btn">
-          <%= f.button type: "submit", class: "btn btn-lg btn-r", id: "search_index" do %>
+          <%= search_db.button type: "submit", class: "btn btn-lg btn-r", id: "search_index" do %>
           <i class="fa fa-search fa-lg"></i>
           <% end %>
         </span>
@@ -33,7 +31,6 @@
 
 
 <!-- About Empresas-->
-
 <div id="tf-about">
   <div class="container">
     <div class="row">
@@ -79,7 +76,6 @@
 
 
 <!-- Search Page-->
-
 <div id="tf-search" class="text-center">
   <div class="overlay">
     <div class="container">
@@ -125,7 +121,6 @@
 
 
 <!-- Services Section-->
-
 <div id="tf-services" class="text-center">
   <div class="container">
     <div class="section-title center">

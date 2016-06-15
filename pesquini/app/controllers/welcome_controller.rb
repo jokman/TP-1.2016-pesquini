@@ -7,25 +7,42 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 =end
 
 class WelcomeController < ApplicationController
-	
-	# 
-	# Method that gives the result from the search for enterprises in the welcome page.
-	# 
-	# @return [String] search result with enterprises.
+
+=begin
+Method index, only for show
+Don't return nothing, because this method is void.
+=end
+
   def index()
 
-    unless params[:q].nil?()
-      params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
-    end 
+		unless params[:q].nil?()
+    	raise "params should not be nil" if params[:q] != nil
+      params_search[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
+    end
 
-    # [String] Recives the search made.
-    @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
-
-    # [String] Keeps the result of the search.
-    @enterprises = @search.result()
-
-    return @enterprises
+		@search = searching_enterprise(params)
+    @enterprises = search_result(@search)
 
   end
+
+#Method that do a search in Enterprise based on params
+
+	def searching_enterprise(params_search)
+
+			search = Enterprise.search(params_search[:q].try(:merge, m: 'or'))
+
+			return search
+
+	end
+
+#Method that saves the search result
+
+	def search_result(search)
+
+		enterprises = search.result()
+
+		return enterprises
+
+	end
 
 end
