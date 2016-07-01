@@ -17,9 +17,9 @@ class Sanction < ActiveRecord::Base
 
   scope :by_year, lambda { |year| where( "extract(year from initial_date) = ?", year ) }
 
-  # 
+  #
   # Method that define all years that have sanctions on data.
-  # 
+  #
   # @return [String] years.
   def self.all_years()
 
@@ -30,10 +30,10 @@ class Sanction < ActiveRecord::Base
 
   end
 
-  # 
+  #
   # Method that refresh sanctions searched by process number.
-  # 
-  # @return [String] result of search. 
+  #
+  # @return [String] result of search.
   def refresh!()
 
     Preconditions.check_not_nil( process_number )
@@ -44,15 +44,13 @@ class Sanction < ActiveRecord::Base
     return found_sanction
   end
 
-  # 
+  #
   # Method for calculating the percentage of sanctions.
   # @param value [Double] receives a percentage of the total value.
-  # 
+  #
   # @return [Double] percentage.
   def self.percentual_sanction( value )
 
-    Preconditions.check( total ) { is_not_nil and has_type( Interger ) and satisfies("> 0") { total > 0 } }
-    Preconditions.check( value ) { is_not_nil and has_type( Double ) }
 
     # [Interger] receives the full amount.
     total = Sanction.all.count

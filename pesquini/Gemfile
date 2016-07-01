@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'rails-i18n',  '~> 4.0.0'
 gem 'simplecov', :require => false, :group => :test
 gem 'ransack'
 gem 'will_paginate', '~> 3.0.6'
@@ -76,4 +76,3 @@ gem "solid_assert"
 gem 'yard', '~> 0.8.7.6'
 
 end
-

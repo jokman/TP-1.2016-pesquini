@@ -8,9 +8,9 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 class EnterprisesController < ApplicationController
 
-  # 
+  #
   # Give result form enterprise search.
-  # 
+  #
   # @return [String] enterprises.
   def index()
 
@@ -55,7 +55,7 @@ class EnterprisesController < ApplicationController
   # Method to show the page number.
   #
   # @return [ Integer ] page number.
-  def show_page_number()  
+  def show_page_number()
 
     if params[:page].to_i > 0
       @page_number = params[:page].to_i  - 1
@@ -67,10 +67,10 @@ class EnterprisesController < ApplicationController
 
   end
 
-  # 
+  #
   # Method that manipulates the payments to the enterprise.
   # @param enterprise [String] keeps enterprises information.
-  # 
+  #
   # @return [String] position of most payment enterprises.
   def enterprise_payment_position( enterprise )
 
@@ -80,13 +80,12 @@ class EnterprisesController < ApplicationController
     payment_position.each_with_index do |total_sum, index|
 
       raise "total_sum should not be nil" if total_sum.nil?
-      Preconditions.check( index ) { index >= 0 }
-      
+
       if total_sum.payments_sum == enterprise.payments_sum
         return index + 1
-      else
-        # Nothing to do.
+      # else case: do nothing.    
       end
+
     end
 
     return payment_position

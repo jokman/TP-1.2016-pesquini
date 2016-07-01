@@ -8,7 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 <div class =" lowercase-letter">
   <% @sanctions.each_with_index do |sanction, index| %>
-    
+
     <h4><b><div class= "index_number">
       <%= @page_number*@per_page + index +1%>
     </div></b></h4>
@@ -28,8 +28,9 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
   <% if @sanctions.empty? %>
     <h3> Dados sobre sanções não informados </h3>
+  <!-- else case: do nothing. -->
   <% end %>
-  
+
   <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
 
 </div>

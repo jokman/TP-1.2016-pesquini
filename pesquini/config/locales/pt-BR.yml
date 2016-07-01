@@ -1,0 +1,106 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+pt-BR:
+  hello: "Ola mundo"
+
+  #_header.html.erb
+  Pesquisas: "Pesquisas"
+  Estatisticas: "Estatisticas"
+  Sobre: "Sobre"
+  Saiba Mais: "Saiba Mais"
+
+  #welcome.html.erb
+  Digite nome ou CNPJ da empresa: "Digite nome ou CNPJ da empresa"
+  Pesquisa de empresas Inidôneas: "Pesquisa de empresas Inidôneas"
+
+  O que são: "O que são"
+  Empresas Inidôneas: "Empresas Inidôneas"
+
+  Suspensão temporária: "Suspensão temporária"
+  Declaração de inidoneidade: "Declaração de inidoneidade"
+  Impedimento de licitar e contratar: "Impedimento de licitar e contratar"
+  Proibição de participar de licitações e de contratar: "Proibição de participar de licitações e de contratar"
+  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito: "As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito"
+  ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública: "ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública"
+  Algumas das sanções que uma empresa pode sofrer: "algumas das sanções que uma empresa pode sofrer"
+  Outras: "Outras"
+
+  Clique aqui saber sobre mais sanções e informações sobre elas: "Clique aqui saber sobre mais sanções e informações sobre elas"
+
+  Formas de pesquisa: "Formas de pesquisa"
+  Pesquisa por nome ou CNPJ: "Pesquisa por nome ou CNPJ"
+  Realizar a pesquisa através da razão social da empresa: "Realizar a pesquisa através da razão social da empresa"
+
+  Mostrar todas as empresas: "Mostrar todas as empresas"
+  Mostrar todas as empresas cadastradas: "Mostrar todas as empresas cadastradas"
+
+  Estatísticas sobre empresas: "Estatísticas sobre empresas"
+
+  Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral."
+
+  Estados com mais sanções: "Estados com mais sanções"
+  Gráfico que indica a quantidade de sanções por Unidade Federativa.: "Gráfico que indica a quantidade de sanções por Unidade Federativa."
+
+  Sobre o: "Sobre o"
+
+  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais: "O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais"
+  como gráficos: "como gráficos"
+  tabelas e rankings para a população em geral: "tabelas e rankings para a população em geral"
+
+  Sobre: "Sobre"
+  nós: "nós"
+
+  Empresas com mais sanções: "Empresas com mais sanções"
+  Tipos de sanções: "Tipos de sanções"
+  Empresas com maior numero de pagamentos: "Empresas com maior numero de pagamentos"
+
+  Somos alunos da Universidade de Brasilia: "Somos alunos da Universidade de Brasilia"
+  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software"
+
+  Gráfico que indica  a quantidade de sanções por Unidade Federativa: "Gráfico que indica  a quantidade de sanções por Unidade Federativa"
+
+  Ranking que indica a quantidade de empresas com mais sançoes: "Ranking que indica a quantidade de empresas com mais sançoes"
+
+  Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades: "Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades"
+
+  Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking que indica as empresas que mais receberam pagamentos do governo"
+
+  Visualização de gráficos e rankings sobre empresas inidôneas: "Visualização de gráficos e rankings sobre empresas inidôneas"
+  Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral"
+
+  # _payments.html.erb
+  Identificador: "Identificador"
+  Número do processo: "Número do processo"
+  Valor inicial: "Valor inicial"
+  Data de assinatura: "Data de assinatura"
+  Início do pagamento: "Início do pagamento"
+  Fim do pagamento: "Fim do pagamento"
+  Dados sobre pagamentos não informados: "Dados sobre pagamentos não informados"
+
+  # _sanction.html.rb
+  Orgão sancionador: "Orgão sancionador"
+  Número do processo: "Número do processo"
+  Data de Início da Sanção: "Data de Início da Sanção"
+  Data Final da Sanção: "Data Final da Sanção"
+  UF: "UF"
+  Tipo Sanção: "Tipo Sanção"
+  Contrato Pós Sanção?: "Contrato Pós Sanção?"

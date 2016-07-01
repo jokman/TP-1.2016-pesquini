@@ -21,3 +21,87 @@
 
 en:
   hello: "Hello world"
+
+  #_header.html.erb
+  Pesquisas: "Search"
+  Estatisticas: "Statistics"
+  Sobre: "About"
+  Saiba Mais: "Know More"
+
+  #welcome.html.erb
+  Digite nome ou CNPJ da empresa: "Type the name or the CNPJ of the enterprise"
+  Pesquisa: "Research"
+  de empresas: "of disreputable"
+
+  O que são: "What Are"
+  empresas Inidôneas: "Disreputable Enterprises"
+
+  Suspensão temporária: "Temporary Suspension"
+  Declaração de inidoneidade: "Declaration of unfitness"
+  Impedimento de licitar e contratar: "Impediment to bid and hire"
+  Proibição de participar de licitações e de contratar: "Ban to participate in bidding and hiring"
+  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito: "Companies listed as inapt are those who received sanctions that have the effect of"
+  ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública: "or restriction on the right to participate in bidding or contracting with the Public Administration"
+  Algumas das sanções que uma empresa pode sofrer: "Some of the sanctions that a company can suffer are"
+  Outras: "Other"
+
+  Clique aqui saber sobre mais sanções e informações sobre elas: "Click here to know more about sanctions and information about them"
+
+  Formas de pesquisa: "Forms Of Research"
+  Pesquisa por nome ou CNPJ: "Search by name or CNPJ"
+  Realizar a pesquisa através da razão social da empresa: "Make the search by fantasy name"
+
+  Mostrar todas as empresas: "Show All Companies"
+  Mostrar todas as empresas cadastradas: "Show All Registered Companies"
+
+  Estatísticas sobre empresas: "Statistics About Companies"
+
+  Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Through this tool it is possible to get some information related disreputable companies in general ."
+
+  Estados com mais sanções: "States With The Most Sanctions"
+  Gráfico que indica a quantidade de sanções por Unidade Federativa: "Chart that indicates the quantity of sanctions by Federative Unity"
+
+  Sobre o: "About"
+
+  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais: "The pesquini system aims to provide informations about Brazilian companies that are disreputable in the most interactive a atractive way"
+  como gráficos: "like graphs"
+  tabelas e rankings para a população em geral: "ranking and tables"
+
+  Sobre: "About"
+  nós: "Us"
+
+  Empresas com mais sanções: "Enterprises with most sanctions"
+  Tipos de sanções: "Types of sanctions"
+  Empresas com maior numero de pagamentos: "Enterprises with the most number of payments"
+
+  Somos alunos da Universidade de Brasilia: "We are students of University Of Brasilia"
+  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "We produced this software as a project in the discipline of Software Development Methods"
+
+  Gráfico que indica  a quantidade de sanções por Unidade Federativa: "Graph that indicates the number of sanctions by Federative Unity"
+
+  Ranking que indica a quantidade de empresas com mais sançoes: "Ranking that indicates the number of companies with most sanctions"
+
+  Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades: "Graph that indicates the types of sanctions that are more recurrent and their respective quantities"
+
+  Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking that indicates the companies that received the most payments by the goverment"
+
+  Visualização de gráficos e rankings sobre empresas inidôneas: "Preview charts and rankings of disreputable companies"
+
+  Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Through this tool it is possible to get some information related disreputable companies in general"
+  # _payments.html.erb
+  Identificador: "Identifier"
+  Número do processo: "Process number"
+  Valor inicial: "Initial value"
+  Data de assinatura: "Signature date"
+  Início do pagamento: "Start of payment"
+  Fim do pagamento: "End of payment"
+  Dados sobre pagamentos não informados: "Payment data not reported"
+
+  # _sanction.html.rb
+  Orgão sancionador: "Organ sanctioning"
+  Número do processo: "Process number"
+  Data de Início da Sanção: "Initial date of the sanction"
+  Data Final da Sanção: "Final date of the sanction"
+  UF: "UF"
+  Tipo Sanção: "Sanction Type"
+  Contrato Pós Sanção?: "Contract after sanction?"

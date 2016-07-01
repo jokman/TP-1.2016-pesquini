@@ -8,7 +8,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 <div class =" lowercase-letter">
 
-  <% @payments.each_with_index do |payment, index| %>
+  <% @payments_per_page.each_with_index do |payment, index| %>
 
     <h4><b><div class= "index_number">
       <%= @page_num*@per_page + index +1%>
@@ -25,8 +25,9 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
   <% if @payments_per_page.empty? %>
     <h3> Dados sobre pagamentos não informados </h3>
+  <!-- else case: do nothing. -->
   <% end %>
-  
+
   <%= will_paginate @payments_per_page,  renderer: BootstrapPagination::Rails %>
 
 </div>

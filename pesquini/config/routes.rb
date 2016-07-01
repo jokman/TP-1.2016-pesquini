@@ -1,30 +1,32 @@
- Rails.application.routes.draw do
-  root 'welcome#index'
-  get '/parser/cei' => 'parser/parser_cei#import'
-  get '/parser/payment' => 'parser/parser_payment#import'
-  #get '/parser' => 'parser#index'
-  get '/parser', :controller => 'parser/parser', :action => :index
+Rails.application.routes.draw do
+  scope "(:locale)", :locale => /en|pt-BR/ do
+    root 'welcome#index'
+    get '/parser/cei' => 'parser/parser_cei#import'
+    get '/parser/payment' => 'parser/parser_payment#import'
+    #get '/parser' => 'parser#index'
+    get '/parser', :controller => 'parser/parser', :action => :index
 
-  resources :enterprises, only: [:index, :show]
+    resources :enterprises, only: [:index, :show]
 
-  #users_controller
-  get '/signup' => 'users#new'
+    #users_controller
+    get '/signup' => 'users#new'
 
-  #session_controller
-  get '/signin' => 'sessions#new'
-  delete '/signout' => 'sessions#destroy'
-  resources :sessions, only: [:new, :create, :destroy]
+    #session_controller
+    get '/signin' => 'sessions#new'
+    delete '/signout' => 'sessions#destroy'
+    resources :sessions, only: [:new, :create, :destroy]
 
-  get '/rankings' => 'rankings#index'
-  get '/statistics' => 'statistics#index'
-  get '/statistics/enterprise_group_ranking' => 'statistics#enterprise_group_ranking'
-  get '/statistics/sanction_by_state_graph' => 'statistics#sanction_by_state_graph'
-  get '/statistics/most_sanctioned_ranking' => 'statistics#most_sanctioned_ranking'
-  get '/statistics/sanction_by_type_graph' => 'statistics#sanction_by_type_graph'
-  get '/statistics/most_paymented_ranking' => 'statistics#most_paymented_ranking'
-  get '/more' => 'welcome#more'
-  get '/graphics' => 'graphics#index'
-  match 'statistics', controller: 'statistics', action: 'total_by_state', via: 'get'
+    get '/rankings' => 'rankings#index'
+    get '/statistics' => 'statistics#index'
+    get '/statistics/enterprise_group_ranking' => 'statistics#enterprise_group_ranking'
+    get '/statistics/sanction_by_state_graph' => 'statistics#sanction_by_state_graph'
+    get '/statistics/most_sanctioned_ranking' => 'statistics#most_sanctioned_ranking'
+    get '/statistics/sanction_by_type_graph' => 'statistics#sanction_by_type_graph'
+    get '/statistics/most_paymented_ranking' => 'statistics#most_paymented_ranking'
+    get '/more' => 'welcome#more'
+    get '/graphics' => 'graphics#index'
+    match 'statistics', controller: 'statistics', action: 'total_by_state', via: 'get'
+  end
 
 
 
