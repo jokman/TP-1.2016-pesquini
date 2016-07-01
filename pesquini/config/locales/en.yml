@@ -88,6 +88,7 @@ en:
   Visualização de gráficos e rankings sobre empresas inidôneas: "Preview charts and rankings of disreputable companies"
 
   Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Through this tool it is possible to get some information related disreputable companies in general"
+
   # _payments.html.erb
   Identificador: "Identifier"
   Número do processo: "Process number"
@@ -97,11 +98,59 @@ en:
   Fim do pagamento: "End of payment"
   Dados sobre pagamentos não informados: "Payment data not reported"
 
-  # _sanction.html.rb
-  Orgão sancionador: "Organ sanctioning"
+
+  # statistcs.html.erb
+  Empresas: "Enterprises"
+  Estados: "States"
+  Tipos: "Types"
+  com mais sanções: "with more sanctions"
+  com mais pagamentos: "with more payments"
+  de sanções: "of sanctions"
+
+  # Estados com mais sanções section
+  Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral: "This graph shows what kind of sanction brazilian's companies suffered more generaly"
+  Como também demonstra através de um filtro por estado: "As also shown throught a filter by state"
+  qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil: "what kind of sanction more occured in each Brasil's federation units"
+  Clique aqui para ser redirecionado para a página: "Click here to be redirected to page"
+
+  # Empresas com mais sanções section
+  Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988: "This ranking has information about the enterprises that receive more sanctions since 1988"
+  separando-as por grupos de número de sanções: "separating by groups of sanctions number"
+
+  # Tipos de sanções section
+  Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral: "This graph shows what kind of sanctions brazilian's companies suffered more generaly"
+  São elas: "They are"
+  suspensão temporária: "temporaly suspension"
+  declaração de inidoneidade: "unfitness declaration"
+  impedimento de licitar e contratar: "incapacity to bid and contract"
+  proibição de participar de licitações e de contratar: "proibition to participate in bids and contracts"
+  Esta estatística também demonstra através de um filtro por estado: "This statistic also shown throught a filter by state"
+
+  # Empresas com mais pagamentos section
+  Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais receberam pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados: "In this topic is available the ranking with more informations about the enterprises that received more payments for government tenders from the start of data collection"
+
+  # most_sanctioned_ranking.html.erb
+  Ranking de empresas com mais sanções: "Ranking of enterprise with more sanctions"
+  Grupo de Empresas com: "Enterprise group with"
+  sanções: "sanction"
+  Lista de empresas com: "Enterprise's list with"
+
+  # enterprise.html.erb
+  CNPJ da Empresa: "Enterprise's cnpj"
+  Posição no: "position in"
+  grupo: "group"
+  do ranking de empresas mais sancionadas: "of enterprise's ranking more sanctioned"
+  Posição no ranking de empresas que mais receberam verbas de pagamentos: "position in ranking of companies that received more payments of funds"
+  Sanções: "Sanctions"
+  Pagamentos: "Payments"
+
+  # sanctions.html.erb
+  Órgao Sancionador: "Sanctioning organ"
   Número do processo: "Process number"
-  Data de Início da Sanção: "Initial date of the sanction"
-  Data Final da Sanção: "Final date of the sanction"
-  UF: "UF"
-  Tipo Sanção: "Sanction Type"
-  Contrato Pós Sanção?: "Contract after sanction?"
+  Data de Inicio da Sanção: "Initial date of sanction"
+  Data Final da Sanção: "Final date of sanction"
+  Tipo Sanção: "Sanction type"
+  Contrato pós Sanção: "Contract after sanction"
+  
+  # sanction_by_state_graph.html.erb
+  Filtrar sanções por Ano: "Filter sanction by year"

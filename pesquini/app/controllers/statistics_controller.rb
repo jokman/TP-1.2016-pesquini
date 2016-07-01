@@ -104,7 +104,6 @@ class StatisticsController < ApplicationController
     gon.dados = total_by_state
 
     # [String] keeps graph title.
-    titulo = "Gráfico de Sanções por Estado"
 
     # receives information for plot graph.
     @chart = sanction_by_state_graph_information()
@@ -119,8 +118,15 @@ class StatisticsController < ApplicationController
   # @return informations chart.
   def sanction_by_state_graph_information()
 
-
-    title = "Gráfico de Sanções por Estado"
+    if params[:locale] == 'pt-BR'
+      title = "Gráfico de Sanções por Estado"
+      legend_graph = "Número de sanções"
+      legend_title = "Sanções"
+    else
+      title = "Graph sanctions by state"
+      legend_graph = "Number of sanctions"
+      legend_title = "Sanction"
+    end
     @chart = LazyHighCharts::HighChart.new( "graph" ) do |parameters|
     Preconditions.check_not_nil( parameters )
     parameters.title( :text => title )
@@ -131,8 +137,8 @@ class StatisticsController < ApplicationController
 
     # Defines values to draw sanction by state chart.
     parameters.xAxis( :categories => @@states_list )
-    parameters.series( :name => "Número de Sanções", :yAxis => 0, :data => total_by_state )
-    parameters.yAxis [{:title => {:text => "Sanções", :margin => 30} }, ]
+    parameters.series( :name => legend_graph, :yAxis => 0, :data => total_by_state )
+    parameters.yAxis [{:title => {:text => legend_title, :margin => 30} }, ]
     parameters.legend( :align => "right", :verticalAlign => "top", :y => 75,
               :x => -50, :layout => "vertical", )
     parameters.chart( {:defaultSeriesType => "column"} )
@@ -154,7 +160,6 @@ class StatisticsController < ApplicationController
 
     if ( !@states )
       @states = @@states_list.clone
-      @states.unshift( "Todos" )
     # else case: do nothing.
     end
 
