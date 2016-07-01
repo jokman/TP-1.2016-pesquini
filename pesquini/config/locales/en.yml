@@ -155,5 +155,9 @@ en:
   Fim do pagamento: "End of payment"
   Dados sobre pagamentos não informados: "Data payments not informed"
 
+  # _footer.html.erb
+  Equipe de alunos UnB: "Staff of UNB's students"
+  disciplina MDS/GPP: " MDS/GPP discipline"
+
   # sanction_by_state_graph.html.erb
   Filtrar sanções por Ano: "Filter sanction by year"
