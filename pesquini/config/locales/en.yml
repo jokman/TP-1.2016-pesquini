@@ -29,17 +29,20 @@ en:
   Saiba Mais: "Know More"
 
   #welcome.html.erb
-  Digite nome ou CNPJ da empresa: "Type in the name or the CNPJ of the enterprise"
-  Pesquisa de empresas Inidôneas: "Research of disreputable enterprises"
+  Digite nome ou CNPJ da empresa: "Type the name or the CNPJ of the enterprise"
+  Pesquisa: "Research"
+  de empresas: "of disreputable"
 
   O que são: "What Are"
-  Empresas Inidôneas: "Disreputable Enterprises"
+  empresas Inidôneas: "Disreputable Enterprises"
 
   Suspensão temporária: "Temporary Suspension"
   Declaração de inidoneidade: "Declaration of unfitness"
   Impedimento de licitar e contratar: "Impediment to bid and hire"
   Proibição de participar de licitações e de contratar: "Ban to participate in bidding and hiring"
-  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito, ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública, algumas das sanções que uma empresa pode sofrer: "Companies listed as inapt are those who received sanctions that have the effect of , or restriction on the right to participate in bidding or contracting with the Public Administration. Some of the sanctions that a company can suffer are"
+  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito: "Companies listed as inapt are those who received sanctions that have the effect of"
+  ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública: "or restriction on the right to participate in bidding or contracting with the Public Administration"
+  Algumas das sanções que uma empresa pode sofrer: "Some of the sanctions that a company can suffer are"
   Outras: "Other"
 
   Clique aqui saber sobre mais sanções e informações sobre elas: "Click here to know more about sanctions and information about them"
@@ -56,11 +59,13 @@ en:
   Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Through this tool it is possible to get some information related disreputable companies in general ."
 
   Estados com mais sanções: "States With The Most Sanctions"
-  Gráfico que indica a quantidade de sanções por Unidade Federativa.: "Chart that indicates the quantity of sanctions by Federative Unity"
+  Gráfico que indica a quantidade de sanções por Unidade Federativa: "Chart that indicates the quantity of sanctions by Federative Unity"
 
   Sobre o: "About"
 
-  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais , como gráficos, tabelas e rankings para a população em geral: "The pesquini system aims to provide informations about Brazilian companies that are disreputable, in the most interactive a atractive way, using graphs, ranking and tables."
+  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais: "The pesquini system aims to provide informations about Brazilian companies that are disreputable in the most interactive a atractive way"
+  como gráficos: "like graphs"
+  tabelas e rankings para a população em geral: "ranking and tables"
 
   Sobre: "About"
   nós: "Us"
@@ -69,7 +74,8 @@ en:
   Tipos de sanções: "Types of sanctions"
   Empresas com maior numero de pagamentos: "Enterprises with the most number of payments"
 
-  Somos alunos da Universidade de Brasilia, desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "We are students of University Of Brasilia (UNB - FGA). We produced this software as a project in the discipline of Métodos de Desenvolviemento De Software"
+  Somos alunos da Universidade de Brasilia: "We are students of University Of Brasilia"
+  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "We produced this software as a project in the discipline of Software Development Methods"
 
   Gráfico que indica  a quantidade de sanções por Unidade Federativa: "Graph that indicates the number of sanctions by Federative Unity"
 
@@ -79,6 +85,9 @@ en:
 
   Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking that indicates the companies that received the most payments by the goverment"
 
+  Visualização de gráficos e rankings sobre empresas inidôneas: "Preview charts and rankings of disreputable companies"
+
+  Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Through this tool it is possible to get some information related disreputable companies in general"
   # _payments.html.erb
   Identificador: "Identifier"
   Número do processo: "Process number"
