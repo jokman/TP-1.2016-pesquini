@@ -127,7 +127,11 @@ pt-BR:
   # Empresas com mais pagamentos section
   Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais receberam pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados: "Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais receberam pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados"
 
-
+  # most_sanctioned_ranking.html.erb
+  Ranking de empresas com mais sanções: "Ranking de empresas com mais sanções"
+  Grupo de Empresas com: "Grupo de Empresas com"
+  sanções: "sanções"
+  Lista de empresas com: "Lista de empresas com"
 
   #sanction_by_state_graph.html.erb
   Filtrar sanções por Ano: "Filtrar sanções por Ano"
