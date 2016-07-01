@@ -88,6 +88,7 @@ en:
   Visualização de gráficos e rankings sobre empresas inidôneas: "Preview charts and rankings of disreputable companies"
 
   Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Through this tool it is possible to get some information related disreputable companies in general"
+
   # _payments.html.erb
   Identificador: "Identifier"
   Número do processo: "Process number"
@@ -141,6 +142,15 @@ en:
   Grupo de Empresas com: "Enterprise group with"
   sanções: "sanction"
   Lista de empresas com: "Enterprise's list with"
+
+  # enterprise.html.erb
+  CNPJ da Empresa: "Enterprise's cnpj"
+  Posição no: "position in"
+  grupo: "group"
+  do ranking de empresas mais sancionadas: "of enterprise's ranking more sanctioned"
+  Posição no ranking de empresas que mais receberam verbas de pagamentos: "position in ranking of companies that received more payments of funds"
+  Sanções: "Sanctions"
+  Pagamentos: "Payments"
 
   # sanction_by_state_graph.html.erb
   Filtrar sanções por Ano: "Filter sanction by year"
