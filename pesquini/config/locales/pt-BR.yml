@@ -141,6 +141,10 @@ pt-BR:
   Posição no ranking de empresas que mais receberam verbas de pagamentos: "Posição no ranking de empresas que mais receberam verbas de pagamentos"
   Sanções: "Sanções"
   Pagamentos: "Pagamentos"
+  Ferramenta de busca: "Ferramenta de busca"
+  Nome ou CNPJ: "Nome ou CNPJ"
+  Lista das empresas encontradas: "Lista das empresas encontradas"
+  Empresa: "Empresa"
 
   # sanctions.html.erb
   Órgao Sancionador: "Órgao Sancionador"

@@ -133,6 +133,10 @@ en:
   Posição no ranking de empresas que mais receberam verbas de pagamentos: "position in ranking of companies that received more payments of funds"
   Sanções: "Sanctions"
   Pagamentos: "Payments"
+  Ferramenta de busca: "Search tool"
+  Nome ou CNPJ: "Name or CNPJ"
+  Lista das empresas encontradas: "List of enterprises found"
+  Empresa: "Enterprise"
 
   # _sanctions.html.erb
   Órgao Sancionador: "Sanctioning organ"
