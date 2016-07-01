@@ -1,5 +1,18 @@
 # encoding: utf-8
+Before do
 
+  @user = User.new
+  @user.login = "sanjaninha"
+  @user.password = "sanjana123"
+  @user.save
+
+  @enterprise = Enterprise.new
+  @enterprise.corporate_name = "COOPERSEMO"
+  @enterprise.sanctions_count = 32
+  @enterprise.payments_sum = 20
+  @enterprise.save
+
+end
 Dado(/^que insiro uma empresa existente$/) do
   fill_in 'q_corporate_name_cont', :with=> "COOPERSEMO"
 end
@@ -24,30 +37,9 @@ Entao(/^vejo os dados das sançoes da mesma$/) do
   page.should have_content(1)
 end
 
-Quando(/^o usuário digitar uma url inválida$/) do
-  visit '/invalida'# express the regexp above with the code you wish you had
-end
-
-Então(/^o sistema deve mostrar uma mensagem de página não encontrada$/) do
-  page.should have_content(404) # express the regexp above with the code you wish you had
-end
-
-
-Quando(/^o usuário digitar uma id de uma empresa não existente no banco$/) do
-  visit'/enterprises/4500' # express the regexp above with the code you wish you had
-end
-
 Então(/^eu vejo o texto "(.*?)"$/) do |arg1|
   page.should have_content arg1
 end
-
-Dado(/^que um login exista$/) do
-  @user = User.new
-  @user.login = "sanjaninha"
-  @user.password_digest = "sanjana123"
-  @user.save
-end
-
 
 Então(/^eu sou redirecionado para a Homepage$/) do
   visit '/'
@@ -60,13 +52,6 @@ end
 Entao(/^vejo o ranking dos grupos das empresas com mais sançoes$/) do
   visit '/statistics/most_sanctioned_ranking'
 end
-
-Dado(/^que a empresa COOPERSEMO exista$/) do
-  @enterprise = Enterprise.new
-  @enterprise.corporate_name = "COOPERSEMO"
-  @enterprise.save
-end
-
 
 Entao(/^vejo o nome de todas as empresas com (\d+) sanções$/) do |arg1|
   page.should have_content arg1

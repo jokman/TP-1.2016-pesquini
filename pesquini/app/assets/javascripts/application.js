@@ -15,3 +15,4 @@
 //= require rails.js
 //= require bootstrap.js
 //= require owl.carousel.js
+//= require search

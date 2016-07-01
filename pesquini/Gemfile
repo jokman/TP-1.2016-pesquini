@@ -29,7 +29,7 @@ gem 'owlcarousel-rails'
 gem 'highcharts-rails'
 gem 'gon'
 gem 'lazy_high_charts'
-
+gem 'selenium-webdriver'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
