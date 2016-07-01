@@ -62,7 +62,9 @@ pt-BR:
 
   Sobre o: "Sobre o"
 
-  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais , como gráficos, tabelas e rankings para a população em geral: "O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais , como gráficos, tabelas e rankings para a população em geral"
+  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais: "O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais"
+  como gráficos: "como gráficos"
+  tabelas e rankings para a população em geral: "tabelas e rankings para a população em geral"
 
   Sobre: "Sobre"
   nós: "nós"
@@ -71,7 +73,8 @@ pt-BR:
   Tipos de sanções: "Tipos de sanções"
   Empresas com maior numero de pagamentos: "Empresas com maior numero de pagamentos"
 
-  Somos alunos da Universidade de Brasilia, desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "Somos alunos da Universidade de Brasilia, desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software"
+  Somos alunos da Universidade de Brasilia: "Somos alunos da Universidade de Brasilia"
+  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software"
 
   Gráfico que indica  a quantidade de sanções por Unidade Federativa: "Gráfico que indica  a quantidade de sanções por Unidade Federativa"
 
@@ -80,6 +83,9 @@ pt-BR:
   Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades: "Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades"
 
   Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking que indica as empresas que mais receberam pagamentos do governo"
+
+  Visualização de gráficos e rankings sobre empresas inidôneas: "Visualização de gráficos e rankings sobre empresas inidôneas"
+  Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral"
 
   # _payments.html.erb
   Identificador: "Identificador"
