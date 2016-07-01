@@ -133,5 +133,30 @@ pt-BR:
   sanções: "sanções"
   Lista de empresas com: "Lista de empresas com"
 
+  # enterprise.html.erb
+  CNPJ da Empresa: "CNPJ da Empresa"
+  Posição no: "Posição no"
+  grupo: "grupo"
+  do ranking de empresas mais sancionadas: "do ranking de empresas mais sancionadas"
+  Posição no ranking de empresas que mais receberam verbas de pagamentos: "Posição no ranking de empresas que mais receberam verbas de pagamentos"
+  Sanções: "Sanções"
+  Pagamentos: "Pagamentos"
+  Ferramenta de busca: "Ferramenta de busca"
+  Nome ou CNPJ: "Nome ou CNPJ"
+  Lista das empresas encontradas: "Lista das empresas encontradas"
+  Empresa: "Empresa"
+
+  # sanctions.html.erb
+  Órgao Sancionador: "Órgao Sancionador"
+  Número do processo: "Número do processo"
+  Data de Inicio da Sanção: "Data de Inicio da Sanção"
+  Data Final da Sanção: "Data Final da Sanção"
+  Tipo Sanção: "Tipo Sanção"
+  Contrato pós Sanção: "Contrato pós Sanção"
+
+  # _footer.html.erb
+  Equipe de alunos UnB: "Equipe de alunos UnB"
+  disciplina MDS/GPP: "disciplina MDS/GPP"
+
   #sanction_by_state_graph.html.erb
   Filtrar sanções por Ano: "Filtrar sanções por Ano"

@@ -89,16 +89,6 @@ en:
 
   Por meio desta ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "Through this tool it is possible to get some information related disreputable companies in general"
 
-  # _payments.html.erb
-  Identificador: "Identifier"
-  Número do processo: "Process number"
-  Valor inicial: "Initial value"
-  Data de assinatura: "Signature date"
-  Início do pagamento: "Start of payment"
-  Fim do pagamento: "End of payment"
-  Dados sobre pagamentos não informados: "Payment data not reported"
-
-
   # statistcs.html.erb
   Empresas: "Enterprises"
   Estados: "States"
@@ -143,14 +133,31 @@ en:
   Posição no ranking de empresas que mais receberam verbas de pagamentos: "position in ranking of companies that received more payments of funds"
   Sanções: "Sanctions"
   Pagamentos: "Payments"
+  Ferramenta de busca: "Search tool"
+  Nome ou CNPJ: "Name or CNPJ"
+  Lista das empresas encontradas: "List of enterprises found"
+  Empresa: "Enterprise"
 
-  # sanctions.html.erb
+  # _sanctions.html.erb
   Órgao Sancionador: "Sanctioning organ"
   Número do processo: "Process number"
   Data de Inicio da Sanção: "Initial date of sanction"
   Data Final da Sanção: "Final date of sanction"
   Tipo Sanção: "Sanction type"
   Contrato pós Sanção: "Contract after sanction"
-  
+
+  # _payments.html.erb
+  Identificador: "Identifier"
+  Número do processo: "Process number"
+  Valor inicial: "Initial value"
+  Data de assinatura: "Signature date"
+  Início do pagamento: "Start of payment"
+  Fim do pagamento: "End of payment"
+  Dados sobre pagamentos não informados: "Data payments not informed"
+
+  # _footer.html.erb
+  Equipe de alunos UnB: "Staff of UNB's students"
+  disciplina MDS/GPP: " MDS/GPP discipline"
+
   # sanction_by_state_graph.html.erb
   Filtrar sanções por Ano: "Filter sanction by year"

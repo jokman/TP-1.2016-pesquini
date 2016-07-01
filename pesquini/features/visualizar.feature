@@ -2,6 +2,7 @@
 
 Funcionalidade: Visualizar informaçoes
 
+@javascript
 Cenário: Abrir página "saiba mais"
 
 Ao usuário clicar no item de menu "Saiba mais" devera ser mostrado informaçoes referente as legislaçoes de cada tipo de sançao.
