@@ -49,8 +49,7 @@ class SessionsController < ApplicationController
     if signed_in?
       sign_out
       redirect_to root_path
-    else
-      # Nothing to do.
+    # else case: do nothing.
     end
 
   end

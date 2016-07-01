@@ -83,7 +83,7 @@ class StatisticsController < ApplicationController
   def payment_group_ranking()
 
     @quantidade = params[:payments_count]
-    @enterprises_payment = Enterprise.where( payments_count: @quantidade )                                     
+    @enterprises_payment = Enterprise.where( payments_count: @quantidade )
     @enterprises_payment_paginate = @enterprises_payment.paginate( :page => params[:page], :per_page => 10)
 
     return @enterprises_payment_paginate
@@ -126,8 +126,7 @@ class StatisticsController < ApplicationController
     parameters.title( :text => title )
     if( params[:year_].to_i() != 0 )
       parameters.title(:text => params[:year_].to_i() )
-    else
-       # Nothing to do.
+    # else case: do nothing.
     end
 
     # Defines values to draw sanction by state chart.
@@ -156,8 +155,7 @@ class StatisticsController < ApplicationController
     if ( !@states )
       @states = @@states_list.clone
       @states.unshift( "Todos" )
-    else
-      # Nothing to do.
+    # else case: do nothing.
     end
 
     respond_to do |format|
@@ -220,8 +218,7 @@ class StatisticsController < ApplicationController
         sanctions_by_state.each do |sanction_state|
           if( sanction_state.initial_date.year() ==  params[:year_].to_i() )
             selected_year << sanction_state
-          else
-            # Nothing to do.
+          # else case: do nothing.
           end
       end
         sanction_by_state_results << ( selected_year.count() )
@@ -266,8 +263,7 @@ class StatisticsController < ApplicationController
 
       if( params[:state_] && params[:state_] != "Todos" )
         sanctions_by_type = sanctions_by_type.where( state_id: state[:id] )
-      else
-        # Nothing to do.
+      # else case: do nothing.
       end
 
       # Concatenate sanction type in the result list, to have all sanctions by type.
