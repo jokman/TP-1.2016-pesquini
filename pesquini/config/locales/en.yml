@@ -136,5 +136,10 @@ en:
   # Empresas com mais pagamentos section
   Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais receberam pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados: "In this topic is available the ranking with more informations about the enterprises that received more payments for government tenders from the start of data collection"
 
+  # most_sanctioned_ranking.html.erb
+
+  Ranking de empresas com mais sanções: "Ranking of enterprise with more sanctions"
+  Grupo de Empresas com: "Enterprise group with"
+  sanções: "sanction"
   # sanction_by_state_graph.html.erb
   Filtrar sanções por Ano: "Filter sanction by year"

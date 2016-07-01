@@ -105,6 +105,28 @@ pt-BR:
   Tipo Sanção: "Tipo Sanção"
   Contrato Pós Sanção?: "Contrato Pós Sanção?"
 
+  # Estados com mais sanções section
+  Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral: "  Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral"
+  Como também demonstra através de um filtro por estado: "Como também demonstra através de um filtro por estado"
+  qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil: "qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil"
+  Clique aqui para ser redirecionado para a página: "Clique aqui para ser redirecionado para a página"
+
+  # Empresas com mais sanções section
+  Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988: "Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988"
+  separando-as por grupos de número de sanções: "separando-as por grupos de número de sanções"
+
+  # Tipos de sanções section
+  Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral: "Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral"
+  São elas: "São elas"
+  suspensão temporária: "suspensão temporária"
+  declaração de inidoneidade: "declaração de inidoneidade"
+  impedimento de licitar e contratar: "impedimento de licitar e contratar"
+  proibição de participar de licitações e de contratar: "proibição de participar de licitações e de contratar"
+  Esta estatística também demonstra através de um filtro por estado: "Esta estatística também demonstra através de um filtro por estado"
+
+  # Empresas com mais pagamentos section
+  Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais receberam pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados: "Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais receberam pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados"
+
 
 
   #sanction_by_state_graph.html.erb
