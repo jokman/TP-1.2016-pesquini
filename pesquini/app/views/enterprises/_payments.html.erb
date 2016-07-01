@@ -25,6 +25,7 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
   <% if @payments_per_page.empty? %>
     <h3> Dados sobre pagamentos não informados </h3>
+  <!-- else case: do nothing. -->
   <% end %>
 
   <%= will_paginate @payments_per_page,  renderer: BootstrapPagination::Rails %>
