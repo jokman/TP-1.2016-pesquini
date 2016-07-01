@@ -16,7 +16,6 @@ Don't return nothing, because this method is void.
   def index()
 
 		unless params[:q].nil?()
-    	raise "params should not be nil" if params[:q] != nil
       params_search[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
     end
 

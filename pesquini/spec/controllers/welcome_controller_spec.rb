@@ -8,19 +8,24 @@ FGA - UnB Faculdade de Engenharias do Gama - University of Brasilia.
 
 require "rails_helper"
 
-RSpec.describe WelcomeController, :type => :controller do 
-  
-  describe "GET" do 
-  
+RSpec.describe WelcomeController, :type => :controller do
+
+  describe "GET" do
+
     describe "#index" do
-  
-      it "should work" do 
+
+      it "should work" do
+        get :index, {:q => "a"}
+        expect( response ).to have_http_status( :success )
+      end
+
+      it "should work" do
         get :index
         expect( response ).to have_http_status( :success )
       end
-  
+
     end
-  
+
   end
 
 end
