@@ -106,5 +106,35 @@ en:
   Tipo Sanção: "Sanction Type"
   Contrato Pós Sanção?: "Contract after sanction?"
 
-  #sanction_by_state_graph.html.erb
+  # statistcs.html.erb
+  Empresas: "Enterprises"
+  Estados: "States"
+  Tipos: "Types"
+  com mais sanções: "with more sanctions"
+  com mais pagamentos: "with more payments"
+  de sanções: "of sanctions"
+
+  # Estados com mais sanções section
+  Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral: "This graph shows what kind of sanction brazilian's companies suffered more generaly"
+  Como também demonstra através de um filtro por estado: "As also shown throught a filter by state"
+  qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil: "what kind of sanction more occured in each Brasil's federation units"
+  Clique aqui para ser redirecionado para a página: "Click here to be redirected to page"
+
+  # Empresas com mais sanções section
+  Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988: "This ranking has information about the enterprises that receive more sanctions since 1988"
+  separando-as por grupos de número de sanções: "separating by groups of sanctions number"
+
+  # Tipos de sanções section
+  Este gráfico ilustra quais tipos de sanções as empresas brasileiras mais sofreram de forma geral: "This graph shows what kind of sanctions brazilian's companies suffered more generaly"
+  São elas: "They are"
+  suspensão temporária: "temporaly suspension"
+  declaração de inidoneidade: "unfitness declaration"
+  impedimento de licitar e contratar: "incapacity to bid and contract"
+  proibição de participar de licitações e de contratar: "proibition to participate in bids and contracts"
+  Esta estatística também demonstra através de um filtro por estado: "This statistic also shown throught a filter by state"
+
+  # Empresas com mais pagamentos section
+  Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais receberam pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados: "In this topic is available the ranking with more informations about the enterprises that received more payments for government tenders from the start of data collection"
+
+  # sanction_by_state_graph.html.erb
   Filtrar sanções por Ano: "Filter sanction by year"

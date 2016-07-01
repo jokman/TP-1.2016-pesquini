@@ -104,3 +104,8 @@ pt-BR:
   UF: "UF"
   Tipo Sanção: "Tipo Sanção"
   Contrato Pós Sanção?: "Contrato Pós Sanção?"
+
+
+
+  #sanction_by_state_graph.html.erb
+  Filtrar sanções por Ano: "Filtrar sanções por Ano"
