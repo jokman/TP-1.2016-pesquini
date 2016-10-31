@@ -1,0 +1,14 @@
+language: ruby
+cache: bundler
+
+script:
+  - rake test
+
+rvm:
+  - "2.3.1"
+
+notifications:
+  email:
+    recipients:
+      - adailson2@gmail.com
+      - martins.oliveira.mo@gmail.com
